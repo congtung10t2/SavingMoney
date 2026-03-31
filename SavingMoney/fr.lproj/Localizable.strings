@@ -1,0 +1,57 @@
+/* 
+  Localizable.strings
+  SavingMoney
+
+  Created by congtungit on 28/10/25.
+  French Translation (Framework for future implementation)
+*/
+
+// MARK: - Tab Bar
+"tab_add" = "Ajouter";
+"tab_spending" = "Dépenses";
+"tab_deposits" = "Dépôts";
+"tab_ai_advice" = "Conseil IA";
+
+// MARK: - Main Action View
+"balance_label" = "Solde: €%@";
+"what_do_you_want" = "Que voulez-vous faire?";
+"spending_action" = "Dépenses";
+"saving_action" = "Épargne";
+"select_category" = "Sélectionner une catégorie";
+"enter_amount" = "Entrer le montant";
+
+// MARK: - Transaction Form
+"add_expense" = "Ajouter une dépense";
+"add_deposit" = "Ajouter un dépôt";
+"category_label" = "Catégorie: %@";
+"amount_placeholder" = "Montant";
+"description_placeholder" = "Description (optionnel)";
+"cancel" = "Annuler";
+"save" = "Enregistrer";
+
+// MARK: - Overview Views
+"spending_overview" = "Aperçu des dépenses";
+"deposit_overview" = "Aperçu des dépôts";
+"total_spent" = "Total dépensé: €%@";
+"total_deposits" = "Total des dépôts: €%@";
+"spending_breakdown" = "Répartition des dépenses";
+"deposit_breakdown" = "Répartition des dépôts";
+"add_spending_message" = "Ajoutez des transactions de dépenses pour voir votre répartition";
+"add_deposit_message" = "Ajoutez des transactions de dépôts pour voir votre répartition";
+"no_deposits_yet" = "Aucun dépôt pour le moment";
+
+// MARK: - Categories
+"category_food" = "Nourriture";
+"category_transportation" = "Transport";
+"category_shopping" = "Shopping";
+"category_entertainment" = "Divertissement";
+"category_bills" = "Factures";
+"category_healthcare" = "Santé";
+"category_education" = "Éducation";
+"category_other" = "Autre";
+"category_salary" = "Salaire";
+"category_freelance" = "Freelance";
+"category_investment" = "Investissement";
+"category_gift" = "Cadeau";
+
+// Additional French translations would continue here...

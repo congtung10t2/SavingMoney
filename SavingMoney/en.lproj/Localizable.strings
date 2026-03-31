@@ -1,0 +1,126 @@
+/* 
+  Localizable.strings
+  SavingMoney
+
+  Created by congtungit on 28/10/25.
+  
+*/
+
+// MARK: - Tab Bar
+"tab_add" = "Add";
+"tab_spending" = "Spending";
+"tab_deposits" = "Deposits";
+"tab_ai_advice" = "AI Advice";
+"tab_settings" = "Settings";
+
+// MARK: - Settings
+"settings_title" = "Settings";
+"settings_language" = "Language";
+"settings_app_language" = "App Language";
+"settings_appearance" = "Appearance";
+"settings_theme" = "Theme";
+"settings_about" = "About";
+"settings_version" = "Version";
+"select_language" = "Select Language";
+"select_theme" = "Select Theme";
+"settings_select_theme" = "Select Theme";
+"done" = "Done";
+"ui_done" = "Done";
+"ui_cancel" = "Cancel";
+"ui_close" = "Close";
+
+// MARK: - Theme
+"theme_system" = "System";
+"theme_light" = "Light";
+"theme_dark" = "Dark";
+"theme_system_description" = "Follows device setting";
+"theme_light_description" = "Always light mode";
+"theme_dark_description" = "Always dark mode";
+
+// MARK: - Main Action View
+"balance_label" = "Balance: $%@";
+"what_do_you_want" = "What do you want to do?";
+"spending_action" = "Spending";
+"saving_action" = "Saving";
+"select_category" = "Select a category";
+"enter_amount" = "Enter Amount";
+
+// MARK: - Transaction Form
+"add_expense" = "Add Expense";
+"add_deposit" = "Add Deposit";
+"category_label" = "Category: %@";
+"amount_placeholder" = "Amount";
+"description_placeholder" = "Description (optional)";
+"cancel" = "Cancel";
+"save" = "Save";
+
+// MARK: - Overview Views
+"spending_overview" = "Spending Overview";
+"deposit_overview" = "Deposit Overview";
+"total_spent" = "Total Spent: $%@";
+"total_spent_per_month" = "Total Spent: $%@ this month";
+"total_deposits" = "Total Deposits: $%@";
+"total_deposits_per_month" = "Total Deposits: $%@ this month";
+"spending_breakdown" = "Spending Breakdown";
+"deposit_breakdown" = "Deposit Breakdown";
+"add_spending_message" = "Add spending transactions to see your breakdown";
+"add_deposit_message" = "Add deposit transactions to see your breakdown";
+"no_deposits_yet" = "No deposits yet";
+
+// MARK: - Categories
+"category_food" = "Food";
+"category_transportation" = "Transportation";
+"category_shopping" = "Shopping";
+"category_entertainment" = "Entertainment";
+"category_bills" = "Bills";
+"category_healthcare" = "Healthcare";
+"category_education" = "Education";
+"category_other" = "Other";
+"category_salary" = "Salary";
+"category_freelance" = "Freelance";
+"category_investment" = "Investment";
+"category_gift" = "Gift";
+
+// MARK: - AI Advice
+"ai_financial_advisor" = "Financial Advisor";
+"financial_overview" = "Financial Overview";
+"personalized_advice" = "Personalized Advice";
+"refresh" = "Refresh";
+"analyzing_finances" = "Analyzing your finances...";
+"get_ai_advice" = "Get Financial Advice";
+"add_transactions_advice" = "Add some transactions to receive personalized financial recommendations";
+"generate_advice" = "Generate Advice";
+
+// MARK: - Financial Summary
+"balance" = "Balance";
+"savings_rate" = "Savings Rate";
+"transactions" = "Transactions";
+
+// MARK: - AI Advice Messages
+"start_tracking_title" = "Start Tracking Your Finances";
+"start_tracking_desc" = "Begin by adding your income and expenses to get personalized advice.";
+"start_tracking_action" = "Add your first transaction in the Add tab";
+
+"negative_balance_title" = "Negative Balance Alert";
+"negative_balance_desc" = "Your expenses exceed your income. Consider reviewing your spending habits and finding ways to reduce unnecessary expenses.";
+"negative_balance_action" = "Review your spending categories for potential cuts";
+
+"improve_savings_title" = "Improve Your Savings Rate";
+"improve_savings_desc" = "Your savings rate is %.1f%%. Financial experts recommend saving at least 20%% of your income.";
+"improve_savings_action" = "Try to reduce spending or increase income";
+
+"excellent_savings_title" = "Excellent Savings Rate!";
+"excellent_savings_desc" = "Your savings rate of %.1f%% is excellent. Consider investing your surplus for long-term growth.";
+"excellent_savings_action" = "Look into investment opportunities";
+
+"high_spending_title" = "High Spending in %@";
+"high_spending_desc" = "%.1f%% of your expenses go to %@. Consider if this aligns with your financial goals.";
+"high_spending_action" = "Review %@ expenses for optimization";
+
+"emergency_fund_title" = "Build an Emergency Fund";
+"emergency_fund_desc" = "Aim to save 3-6 months of expenses (approximately $%.0f) for unexpected situations.";
+"emergency_fund_action" = "Set aside money each month for emergencies";
+
+"track_progress_title" = "Track Your Progress";
+"track_progress_desc" = "Continue monitoring your income and expenses to maintain healthy financial habits.";
+"track_progress_action" = "Keep adding transactions regularly";

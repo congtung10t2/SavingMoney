@@ -1,0 +1,126 @@
+/* 
+  Localizable.strings
+  SavingMoney
+
+  Created by congtungit on 28/10/25.
+  Vietnamese Translation
+*/
+
+// MARK: - Tab Bar
+"tab_add" = "Thêm";
+"tab_spending" = "Chi tiêu";
+"tab_deposits" = "Tiền gửi";
+"tab_ai_advice" = "Lời khuyên AI";
+"tab_settings" = "Cài đặt";
+
+// MARK: - Settings
+"settings_title" = "Cài đặt";
+"settings_language" = "Ngôn ngữ";
+"settings_app_language" = "Ngôn ngữ ứng dụng";
+"settings_appearance" = "Giao diện";
+"settings_theme" = "Chủ đề";
+"settings_about" = "Thông tin";
+"settings_version" = "Phiên bản";
+"select_language" = "Chọn ngôn ngữ";
+"select_theme" = "Chọn chủ đề";
+"settings_select_theme" = "Chọn chủ đề";
+"done" = "Xong";
+"ui_done" = "Xong";
+"ui_cancel" = "Hủy";
+"ui_close" = "Đóng";
+
+// MARK: - Theme
+"theme_system" = "Hệ thống";
+"theme_light" = "Sáng";
+"theme_dark" = "Tối";
+"theme_system_description" = "Theo cài đặt thiết bị";
+"theme_light_description" = "Luôn chế độ sáng";
+"theme_dark_description" = "Luôn chế độ tối";
+
+// MARK: - Main Action View
+"balance_label" = "Số dư: %@ Đồng";
+"what_do_you_want" = "Bạn muốn làm gì?";
+"spending_action" = "Chi tiêu";
+"saving_action" = "Tiết kiệm";
+"select_category" = "Chọn danh mục";
+"enter_amount" = "Nhập số tiền";
+
+// MARK: - Transaction Form
+"add_expense" = "Thêm chi phí";
+"add_deposit" = "Thêm tiền gửi";
+"category_label" = "Danh mục: %@";
+"amount_placeholder" = "Số tiền";
+"description_placeholder" = "Mô tả (tùy chọn)";
+"cancel" = "Hủy";
+"save" = "Lưu";
+
+// MARK: - Overview Views
+"spending_overview" = "Tổng quan chi tiêu";
+"deposit_overview" = "Tổng quan tiền gửi";
+"total_spent" = "Tổng chi tiêu: %@ Đồng";
+"total_deposits" = "Tổng tiền gửi: %@ Đồng";
+"total_deposits_per_month" = "Tổng tiền gửi: %@ Đồng tháng này";
+"total_spent_per_month" = "Tổng chi tiêu: %@ Đồng tháng này";
+"spending_breakdown" = "Phân tích chi tiêu";
+"deposit_breakdown" = "Phân tích tiền gửi";
+"add_spending_message" = "Thêm giao dịch chi tiêu để xem phân tích";
+"add_deposit_message" = "Thêm giao dịch tiền gửi để xem phân tích";
+"no_deposits_yet" = "Chưa có tiền gửi";
+
+// MARK: - Categories
+"category_food" = "Thực phẩm";
+"category_transportation" = "Giao thông";
+"category_shopping" = "Mua sắm";
+"category_entertainment" = "Giải trí";
+"category_bills" = "Hóa đơn";
+"category_healthcare" = "Y tế";
+"category_education" = "Giáo dục";
+"category_other" = "Khác";
+"category_salary" = "Lương";
+"category_freelance" = "Freelance";
+"category_investment" = "Đầu tư";
+"category_gift" = "Quà tặng";
+
+// MARK: - AI Advice
+"ai_financial_advisor" = "Cố vấn tài chính AI";
+"financial_overview" = "Tổng quan tài chính";
+"personalized_advice" = "Lời khuyên cá nhân";
+"refresh" = "Làm mới";
+"analyzing_finances" = "Đang phân tích tài chính của bạn...";
+"get_ai_advice" = "Nhận lời khuyên tài chính";
+"add_transactions_advice" = "Thêm một số giao dịch để nhận lời khuyên tài chính cá nhân";
+"generate_advice" = "Tạo lời khuyên";
+
+// MARK: - Financial Summary
+"balance" = "Số dư";
+"savings_rate" = "Tỷ lệ tiết kiệm";
+"transactions" = "Giao dịch";
+
+// MARK: - AI Advice Messages
+"start_tracking_title" = "Bắt đầu theo dõi tài chính";
+"start_tracking_desc" = "Hãy bắt đầu bằng cách thêm thu nhập và chi phí để nhận lời khuyên cá nhân.";
+"start_tracking_action" = "Thêm giao dịch đầu tiên trong tab Thêm";
+
+"negative_balance_title" = "Cảnh báo số dư âm";
+"negative_balance_desc" = "Chi phí của bạn vượt quá thu nhập. Hãy xem xét thói quen chi tiêu và tìm cách giảm chi phí không cần thiết.";
+"negative_balance_action" = "Xem xét các danh mục chi tiêu để cắt giảm";
+
+"improve_savings_title" = "Cải thiện tỷ lệ tiết kiệm";
+"improve_savings_desc" = "Tỷ lệ tiết kiệm của bạn là %.1f%%. Các chuyên gia tài chính khuyên nên tiết kiệm ít nhất 20%% thu nhập.";
+"improve_savings_action" = "Cố gắng giảm chi tiêu hoặc tăng thu nhập";
+
+"excellent_savings_title" = "Tỷ lệ tiết kiệm xuất sắc!";
+"excellent_savings_desc" = "Tỷ lệ tiết kiệm %.1f%% của bạn rất xuất sắc. Hãy xem xét đầu tư số tiền dư thừa để tăng trưởng dài hạn.";
+"excellent_savings_action" = "Tìm hiểu các cơ hội đầu tư";
+
+"high_spending_title" = "Chi tiêu cao cho %@";
+"high_spending_desc" = "%.1f%% chi phí của bạn dành cho %@. Hãy xem xét liệu điều này có phù hợp với mục tiêu tài chính không.";
+"high_spending_action" = "Xem xét chi phí %@ để tối ưu hóa";
+
+"emergency_fund_title" = "Xây dựng quỹ khẩn cấp";
+"emergency_fund_desc" = "Hãy cố gắng tiết kiệm 3-6 tháng chi phí (khoảng %.0f Đồng) cho các tình huống bất ngờ.";
+"emergency_fund_action" = "Dành một khoản tiền mỗi tháng cho tình huống khẩn cấp";
+
+"track_progress_title" = "Theo dõi tiến trình";
+"track_progress_desc" = "Tiếp tục theo dõi thu nhập và chi phí để duy trì thói quen tài chính lành mạnh.";
+"track_progress_action" = "Tiếp tục thêm giao dịch thường xuyên";

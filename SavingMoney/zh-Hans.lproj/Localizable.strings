@@ -1,0 +1,57 @@
+/* 
+  Localizable.strings
+  SavingMoney
+
+  Created by congtungit on 28/10/25.
+  Chinese Simplified Translation (Framework for future implementation)
+*/
+
+// MARK: - Tab Bar
+"tab_add" = "添加";
+"tab_spending" = "支出";
+"tab_deposits" = "存款";
+"tab_ai_advice" = "AI建议";
+
+// MARK: - Main Action View
+"balance_label" = "余额: ¥%@";
+"what_do_you_want" = "您想做什么？";
+"spending_action" = "支出";
+"saving_action" = "储蓄";
+"select_category" = "选择类别";
+"enter_amount" = "输入金额";
+
+// MARK: - Transaction Form
+"add_expense" = "添加支出";
+"add_deposit" = "添加存款";
+"category_label" = "类别: %@";
+"amount_placeholder" = "金额";
+"description_placeholder" = "描述（可选）";
+"cancel" = "取消";
+"save" = "保存";
+
+// MARK: - Overview Views
+"spending_overview" = "支出概览";
+"deposit_overview" = "存款概览";
+"total_spent" = "总支出: ¥%@";
+"total_deposits" = "总存款: ¥%@";
+"spending_breakdown" = "支出分析";
+"deposit_breakdown" = "存款分析";
+"add_spending_message" = "添加支出交易以查看分析";
+"add_deposit_message" = "添加存款交易以查看分析";
+"no_deposits_yet" = "暂无存款";
+
+// MARK: - Categories
+"category_food" = "食品";
+"category_transportation" = "交通";
+"category_shopping" = "购物";
+"category_entertainment" = "娱乐";
+"category_bills" = "账单";
+"category_healthcare" = "医疗";
+"category_education" = "教育";
+"category_other" = "其他";
+"category_salary" = "薪水";
+"category_freelance" = "自由职业";
+"category_investment" = "投资";
+"category_gift" = "礼品";
+
+// Additional Chinese translations would continue here...
