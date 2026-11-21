@@ -23,11 +23,8 @@ struct OnboardingView: View {
                 .font(.headline)
                 .padding(.top, 4)
 
-            // Language choices presented as selectable cards
-            LazyVGrid(
-                columns: [GridItem(.flexible()), GridItem(.flexible())],
-                spacing: 12
-            ) {
+            // Language choices presented as selectable cards stacked vertically
+            VStack(spacing: 10) {
                 ForEach(languageManager.supportedLanguages, id: \.self) { languageCode in
                     LanguageCard(
                         name: languageManager.supportedLanguageNames[languageCode] ?? languageCode,
@@ -36,7 +33,7 @@ struct OnboardingView: View {
                     )
                 }
             }
-            .frame(maxWidth: 420)
+            .frame(maxWidth: .infinity)
             .padding(.top, 4)
 
             Spacer()
@@ -45,10 +42,16 @@ struct OnboardingView: View {
             Button {
                 languageManager.hasCompletedOnboarding = true
             } label: {
+              HStack {
                 Text(LocalizationKeys.onboardingContinue.localized)
+                  .font(.headline)
+                  .fontWeight(.semibold)
+              }.frame(maxWidth: .infinity)
             }
             .buttonStyle(.borderedProminent)
-            .frame(maxWidth: 300)
+           
+            .frame(maxWidth: .infinity)
+            .frame(height: 80)
             .padding(.bottom, 8)
         }
         .padding()
@@ -67,24 +70,28 @@ private struct LanguageCard: View {
         } label: {
             HStack(spacing: 12) {
                 Image(systemName: "globe")
-                    .font(.system(size: 20, weight: .medium))
+                    .font(.system(size: 22, weight: .medium))
                     .foregroundColor(isSelected ? .blue : .secondary)
 
                 Text(name)
                     .font(.body)
-                    .fontWeight(isSelected ? .semibold : .regular)
                     .lineLimit(1)
 
                 Spacer()
 
-                if isSelected {
-                    Image(systemName: "checkmark")
-                        .fontWeight(.bold)
-                        .foregroundColor(.blue)
+                // Fixed-width trailing slot: the checkmark always occupies the same space,
+                // so the layout never shifts when selection changes
+                HStack {
+                    if isSelected {
+                        Image(systemName: "checkmark")
+                            .fontWeight(.bold)
+                            .foregroundColor(.blue)
+                    }
                 }
+                .frame(width: 28, alignment: .trailing)
             }
             .padding()
-            .frame(maxWidth: .infinity)
+            .frame(maxWidth: .infinity, minHeight: 54)
             .background(
                 RoundedRectangle(cornerRadius: 14)
                     .fill(isSelected ? Color(.systemBlue).opacity(0.12) : Color(.systemGray6))

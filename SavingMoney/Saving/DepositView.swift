@@ -60,7 +60,7 @@ struct DepositView: View {
           ForEach(getListOfCalculated(date: Date.startOfMonth(for: selectedMonth, of: selectedYear) ?? Date()).enumerated(), id: \.offset) { index, transaction in
            
               VStack(alignment: .leading) {
-                Text("\(index + 1). Amount: \(transaction.amount) Category: \(transaction.category)")
+                Text("\(index + 1). Amount: \(transaction.amount.formatted(.number.precision(.fractionLength(0)))) Category: \(transaction.category)")
                 if !transaction.descriptionText.isEmpty {
                   Text("Description: \(transaction.descriptionText)")
                 }
