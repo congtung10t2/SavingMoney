@@ -124,3 +124,9 @@
 "track_progress_title" = "Theo dõi tiến trình";
 "track_progress_desc" = "Tiếp tục theo dõi thu nhập và chi phí để duy trì thói quen tài chính lành mạnh.";
 "track_progress_action" = "Tiếp tục thêm giao dịch thường xuyên";
+
+// MARK: - Onboarding
+"onboarding_title" = "Chào mừng đến với SavingMoney";
+"onboarding_description" = "Theo dõi thu nhập và chi tiêu của bạn ở một nơi.";
+"onboarding_language_hint" = "Chọn ngôn ngữ của bạn";
+"onboarding_continue" = "Tiếp tục";

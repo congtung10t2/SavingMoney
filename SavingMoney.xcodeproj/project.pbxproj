@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		F498413E2FD2C003007E59EB /* TestPlan.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = F498413D2FD2C003007E59EB /* TestPlan.xctestplan */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		F40314812EB0AA9300EB2C1E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,9 +28,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F40314702EB0AA9200EB2C1E /* SavingMoney.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SavingMoney.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F40314702EB0AA9200EB2C1E /* SavingMoneyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SavingMoneyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F40314802EB0AA9300EB2C1E /* SavingMoneyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SavingMoneyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F403148A2EB0AA9300EB2C1E /* SavingMoneyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SavingMoneyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F498413D2FD2C003007E59EB /* TestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestPlan.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -75,6 +80,7 @@
 		F40314672EB0AA9200EB2C1E = {
 			isa = PBXGroup;
 			children = (
+				F498413D2FD2C003007E59EB /* TestPlan.xctestplan */,
 				F40314722EB0AA9200EB2C1E /* SavingMoney */,
 				F40314832EB0AA9300EB2C1E /* SavingMoneyTests */,
 				F403148D2EB0AA9300EB2C1E /* SavingMoneyUITests */,
@@ -85,7 +91,7 @@
 		F40314712EB0AA9200EB2C1E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F40314702EB0AA9200EB2C1E /* SavingMoney.app */,
+				F40314702EB0AA9200EB2C1E /* SavingMoneyApp.app */,
 				F40314802EB0AA9300EB2C1E /* SavingMoneyTests.xctest */,
 				F403148A2EB0AA9300EB2C1E /* SavingMoneyUITests.xctest */,
 			);
@@ -95,9 +101,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F403146F2EB0AA9200EB2C1E /* SavingMoney */ = {
+		F403146F2EB0AA9200EB2C1E /* SavingMoneyApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F40314942EB0AA9300EB2C1E /* Build configuration list for PBXNativeTarget "SavingMoney" */;
+			buildConfigurationList = F40314942EB0AA9300EB2C1E /* Build configuration list for PBXNativeTarget "SavingMoneyApp" */;
 			buildPhases = (
 				F403146C2EB0AA9200EB2C1E /* Sources */,
 				F403146D2EB0AA9200EB2C1E /* Frameworks */,
@@ -110,11 +116,11 @@
 			fileSystemSynchronizedGroups = (
 				F40314722EB0AA9200EB2C1E /* SavingMoney */,
 			);
-			name = SavingMoney;
+			name = SavingMoneyApp;
 			packageProductDependencies = (
 			);
 			productName = SavingMoney;
-			productReference = F40314702EB0AA9200EB2C1E /* SavingMoney.app */;
+			productReference = F40314702EB0AA9200EB2C1E /* SavingMoneyApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 		F403147F2EB0AA9300EB2C1E /* SavingMoneyTests */ = {
@@ -203,7 +209,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F403146F2EB0AA9200EB2C1E /* SavingMoney */,
+				F403146F2EB0AA9200EB2C1E /* SavingMoneyApp */,
 				F403147F2EB0AA9300EB2C1E /* SavingMoneyTests */,
 				F40314892EB0AA9300EB2C1E /* SavingMoneyUITests */,
 			);
@@ -215,6 +221,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F498413E2FD2C003007E59EB /* TestPlan.xctestplan in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,12 +268,12 @@
 /* Begin PBXTargetDependency section */
 		F40314822EB0AA9300EB2C1E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F403146F2EB0AA9200EB2C1E /* SavingMoney */;
+			target = F403146F2EB0AA9200EB2C1E /* SavingMoneyApp */;
 			targetProxy = F40314812EB0AA9300EB2C1E /* PBXContainerItemProxy */;
 		};
 		F403148C2EB0AA9300EB2C1E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F403146F2EB0AA9200EB2C1E /* SavingMoney */;
+			target = F403146F2EB0AA9200EB2C1E /* SavingMoneyApp */;
 			targetProxy = F403148B2EB0AA9300EB2C1E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -399,7 +406,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SavingMoney/Preview Content\"";
-				DEVELOPMENT_TEAM = 8VPJSDFW37;
+				DEVELOPMENT_TEAM = Y3L2N4KDC2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -431,7 +438,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SavingMoney/Preview Content\"";
-				DEVELOPMENT_TEAM = 8VPJSDFW37;
+				DEVELOPMENT_TEAM = Y3L2N4KDC2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -470,7 +477,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SavingMoney.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SavingMoney";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SavingMoneyApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SavingMoneyApp";
 			};
 			name = Debug;
 		};
@@ -539,7 +546,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F40314942EB0AA9300EB2C1E /* Build configuration list for PBXNativeTarget "SavingMoney" */ = {
+		F40314942EB0AA9300EB2C1E /* Build configuration list for PBXNativeTarget "SavingMoneyApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F40314952EB0AA9300EB2C1E /* Debug */,

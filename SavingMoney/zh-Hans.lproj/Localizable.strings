@@ -54,4 +54,10 @@
 "category_investment" = "投资";
 "category_gift" = "礼品";
 
+// MARK: - Onboarding
+"onboarding_title" = "欢迎使用 SavingMoney";
+"onboarding_description" = "在同一处追踪您的收入和支出。";
+"onboarding_language_hint" = "选择您的语言";
+"onboarding_continue" = "继续";
+
 // Additional Chinese translations would continue here...

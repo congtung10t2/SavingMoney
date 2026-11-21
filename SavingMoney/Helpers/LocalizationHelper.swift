@@ -115,6 +115,12 @@ struct LocalizationKeys {
     static let savingsRate = "savings_rate"
     static let transactions = "transactions"
     
+    // MARK: - Onboarding
+    static let onboardingTitle = "onboarding_title"
+    static let onboardingDescription = "onboarding_description"
+    static let onboardingLanguageHint = "onboarding_language_hint"
+    static let onboardingContinue = "onboarding_continue"
+    
     // MARK: - AI Advice Messages
     static let startTrackingTitle = "start_tracking_title"
     static let startTrackingDesc = "start_tracking_desc"
@@ -154,6 +160,13 @@ class LanguageManager: ObservableObject {
             UserDefaults.standard.set(currentLanguage, forKey: "app_language")
             updateBundle()
             NotificationCenter.default.post(name: .languageChanged, object: nil)
+        }
+    }
+    
+    /// Whether the user has completed the onboarding screen at least once.
+    @Published var hasCompletedOnboarding: Bool = UserDefaults.standard.bool(forKey: "onboarding_completed") {
+        didSet {
+            UserDefaults.standard.set(hasCompletedOnboarding, forKey: "onboarding_completed")
         }
     }
     

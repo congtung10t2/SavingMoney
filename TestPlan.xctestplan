@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "0AD6036C-82BA-4F7C-ACD1-93EAF09E4B7B",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:SavingMoney.xcodeproj",
+        "identifier" : "F403147F2EB0AA9300EB2C1E",
+        "name" : "SavingMoneyTests"
+      }
+    }
+  ],
+  "version" : 1
+}

@@ -11,8 +11,12 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      shouldAutocreateTestPlan = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES">
+      <TestPlans>
+         <TestPlanReference
+            reference = "container:TestPlan.xctestplan">
+         </TestPlanReference>
+      </TestPlans>
       <Testables>
          <TestableReference
             skipped = "NO"
@@ -42,8 +46,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F403146F2EB0AA9200EB2C1E"
-            BuildableName = "SavingMoney.app"
-            BlueprintName = "SavingMoney"
+            BuildableName = "SavingMoneyApp.app"
+            BlueprintName = "SavingMoneyApp"
             ReferencedContainer = "container:SavingMoney.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -64,8 +68,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F403146F2EB0AA9200EB2C1E"
-            BuildableName = "SavingMoney.app"
-            BlueprintName = "SavingMoney"
+            BuildableName = "SavingMoneyApp.app"
+            BlueprintName = "SavingMoneyApp"
             ReferencedContainer = "container:SavingMoney.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

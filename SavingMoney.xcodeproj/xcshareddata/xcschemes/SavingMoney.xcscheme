@@ -16,8 +16,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F403146F2EB0AA9200EB2C1E"
-               BuildableName = "SavingMoney.app"
-               BlueprintName = "SavingMoney"
+               BuildableName = "SavingMoneyApp.app"
+               BlueprintName = "SavingMoneyApp"
                ReferencedContainer = "container:SavingMoney.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -69,8 +69,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F403146F2EB0AA9200EB2C1E"
-            BuildableName = "SavingMoney.app"
-            BlueprintName = "SavingMoney"
+            BuildableName = "SavingMoneyApp.app"
+            BlueprintName = "SavingMoneyApp"
             ReferencedContainer = "container:SavingMoney.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -86,8 +86,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F403146F2EB0AA9200EB2C1E"
-            BuildableName = "SavingMoney.app"
-            BlueprintName = "SavingMoney"
+            BuildableName = "SavingMoneyApp.app"
+            BlueprintName = "SavingMoneyApp"
             ReferencedContainer = "container:SavingMoney.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

@@ -54,4 +54,10 @@
 "category_investment" = "Investissement";
 "category_gift" = "Cadeau";
 
+// MARK: - Onboarding
+"onboarding_title" = "Bienvenue dans SavingMoney";
+"onboarding_description" = "Suivez vos revenus et vos dépenses en un seul endroit.";
+"onboarding_language_hint" = "Choisissez votre langue";
+"onboarding_continue" = "Continuer";
+
 // Additional French translations would continue here...

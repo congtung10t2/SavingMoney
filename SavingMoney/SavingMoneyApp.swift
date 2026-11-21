@@ -10,10 +10,16 @@ import SwiftData
 
 @main
 struct SavingMoneyApp: App {
+    @StateObject private var languageManager = LanguageManager.shared
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
-            .modelContainer(for: Transaction.self)
+            if languageManager.hasCompletedOnboarding {
+                ContentView()
+                    .modelContainer(for: Transaction.self)
+            } else {
+                OnboardingView()
+            }
         }
     }
 }

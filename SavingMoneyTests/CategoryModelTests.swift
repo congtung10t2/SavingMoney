@@ -7,7 +7,7 @@
 
 import Testing
 import Foundation
-@testable import SavingMoney
+@testable import SavingMoneyApp
 
 // MARK: - CategoryModel Validation Tests
 struct CategoryModelValidationTests {
