@@ -120,6 +120,9 @@ struct LocalizationKeys {
     static let onboardingDescription = "onboarding_description"
     static let onboardingLanguageHint = "onboarding_language_hint"
     static let onboardingContinue = "onboarding_continue"
+    static let onboardingInitialMoneyTitle = "onboarding_initial_money_title"
+    static let onboardingInitialMoneyPlaceholder = "onboarding_initial_money_placeholder"
+    static let initialMoneyDateNote = "initial_money_date_note"
     
     // MARK: - AI Advice Messages
     static let startTrackingTitle = "start_tracking_title"
@@ -149,6 +152,12 @@ struct LocalizationKeys {
     static let trackProgressTitle = "track_progress_title"
     static let trackProgressDesc = "track_progress_desc"
     static let trackProgressAction = "track_progress_action"
+    
+    // MARK: - Transaction Detail Table
+    static let detailNumber = "detail_number"
+    static let detailAmount = "detail_amount"
+    static let detailCategory = "detail_category"
+    static let detailDescription = "detail_description"
 }
 
 // MARK: - Language Manager
@@ -167,6 +176,21 @@ class LanguageManager: ObservableObject {
     @Published var hasCompletedOnboarding: Bool = UserDefaults.standard.bool(forKey: "onboarding_completed") {
         didSet {
             UserDefaults.standard.set(hasCompletedOnboarding, forKey: "onboarding_completed")
+        }
+    }
+    
+    /// The initial money the user enters during onboarding; seeds the account balance.
+    @Published var initialMoney: Double = UserDefaults.standard.double(forKey: "initial_money") {
+        didSet {
+            UserDefaults.standard.set(initialMoney, forKey: "initial_money")
+        }
+    }
+    
+    /// The date the initial money was entered. Nil for users who haven't entered any yet;
+    /// where a date is needed we show the current date as a fallback.
+    @Published var initialMoneyDate: Date? = UserDefaults.standard.object(forKey: "initial_money_date") as? Date {
+        didSet {
+            UserDefaults.standard.set(initialMoneyDate, forKey: "initial_money_date")
         }
     }
     
@@ -215,6 +239,15 @@ class LanguageManager: ObservableObject {
         } else {
             return String(format: localizedString, arguments: arguments)
         }
+    }
+    
+    /// Formats the note that shows the initial-money amount and its entry date.
+    static func formatInitialMoneyNote(amount: Double, on date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        let amountText = amount.formatted(.number.precision(.fractionLength(0)))
+        return LocalizationKeys.initialMoneyDateNote.localized(arguments: amountText, formatter.string(from: date))
     }
 }
 

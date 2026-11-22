@@ -54,10 +54,19 @@
 "category_investment" = "Investissement";
 "category_gift" = "Cadeau";
 
+// MARK: - Transaction Detail Table
+"detail_number" = "N°";
+"detail_amount" = "Montant";
+"detail_category" = "Catégorie";
+"detail_description" = "Description";
+
 // MARK: - Onboarding
 "onboarding_title" = "Bienvenue dans SavingMoney";
 "onboarding_description" = "Suivez vos revenus et vos dépenses en un seul endroit.";
 "onboarding_language_hint" = "Choisissez votre langue";
 "onboarding_continue" = "Continuer";
+"onboarding_initial_money_title" = "Solde initial";
+"onboarding_initial_money_placeholder" = "0";
+"initial_money_date_note" = "Montant %@ ajouté le %@";
 
 // Additional French translations would continue here...

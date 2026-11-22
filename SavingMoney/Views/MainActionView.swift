@@ -21,6 +21,15 @@ struct MainActionView: View {
       .bold()
       .padding(.top, 16)
       
+      if LanguageManager.shared.initialMoney > 0 {
+        Text(LanguageManager.formatInitialMoneyNote(
+          amount: LanguageManager.shared.initialMoney,
+          on: LanguageManager.shared.initialMoneyDate ?? Date()))
+          .font(.caption)
+          .foregroundColor(.secondary)
+          .padding(.top, 4)
+      }
+      
       Text(LocalizationKeys.whatDoYouWant.localized)
         .font(.title2)
         .bold()
@@ -125,7 +134,7 @@ struct MainActionView: View {
       }
     )
     .onAppear() {
-      viewModel.balance = totalIncome - totalExpenses
+      viewModel.balance = totalIncome - totalExpenses + LanguageManager.shared.initialMoney
     }
     
   }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct OnboardingView: View {
     @ObservedObject private var languageManager = LanguageManager.shared
+    @State private var showInitialMoneyPopup = false
 
     var body: some View {
         VStack(alignment: .center, spacing: 16) {
@@ -36,6 +37,21 @@ struct OnboardingView: View {
             .frame(maxWidth: .infinity)
             .padding(.top, 4)
 
+            // Initial money entry — tap to open the entry popup, same as saving/spending entry
+            Button {
+                showInitialMoneyPopup = true
+            } label: {
+                HStack(spacing: 10) {
+                    Text(LocalizationKeys.onboardingInitialMoneyTitle.localized)
+                        .font(.headline)
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                }
+                .padding(.vertical, 10)
+            }
+            .frame(maxWidth: 340)
+            .padding(.top, 8)
+
             Spacer()
 
             // Continue stays at the bottom, wider than a default button, centered horizontally
@@ -56,6 +72,13 @@ struct OnboardingView: View {
         }
         .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .overlay(
+            Group {
+                if showInitialMoneyPopup {
+                    InitialMoneyPopupView(isPresented: $showInitialMoneyPopup)
+                }
+            }
+        )
     }
 }
 

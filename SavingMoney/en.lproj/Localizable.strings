@@ -125,8 +125,17 @@
 "track_progress_desc" = "Continue monitoring your income and expenses to maintain healthy financial habits.";
 "track_progress_action" = "Keep adding transactions regularly";
 
+// MARK: - Transaction Detail Table
+"detail_number" = "No.";
+"detail_amount" = "Amount";
+"detail_category" = "Category";
+"detail_description" = "Description";
+
 // MARK: - Onboarding
 "onboarding_title" = "Welcome to SavingMoney";
 "onboarding_description" = "Track your income and expenses in one place.";
 "onboarding_language_hint" = "Choose your language";
 "onboarding_continue" = "Continue";
+"onboarding_initial_money_title" = "Initial Money";
+"onboarding_initial_money_placeholder" = "0";
+"initial_money_date_note" = "$%@ added on %@";

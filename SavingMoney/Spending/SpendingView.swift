@@ -59,13 +59,10 @@ struct SpendingView: View {
           Text("Display detailed")
         }).frame(width: 220)
         if displayDetail {
-          ForEach(getListOfCalculated(date: Date.startOfMonth(for: selectedMonth, of: selectedYear)).enumerated(), id: \.offset) { index, transaction in
-            VStack(alignment: .leading) {
-              Text("\(index + 1). Amount: \(transaction.amount.formatted(.number.precision(.fractionLength(0)))) Category: \(transaction.category)")
-              if !transaction.descriptionText.isEmpty {
-                Text("Description: \(transaction.descriptionText)")
-              }
-            }.frame(maxWidth: .infinity)
+          let detailedTransactions = getListOfCalculated(date: Date.startOfMonth(for: selectedMonth, of: selectedYear))
+          if !detailedTransactions.isEmpty {
+            TransactionDetailTableView(transactions: detailedTransactions)
+              .padding(.horizontal, 4)
           }
         } 
       }

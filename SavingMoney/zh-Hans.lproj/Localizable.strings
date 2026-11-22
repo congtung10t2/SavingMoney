@@ -54,10 +54,19 @@
 "category_investment" = "投资";
 "category_gift" = "礼品";
 
+// MARK: - Transaction Detail Table
+"detail_number" = "序号";
+"detail_amount" = "金额";
+"detail_category" = "类别";
+"detail_description" = "描述";
+
 // MARK: - Onboarding
 "onboarding_title" = "欢迎使用 SavingMoney";
 "onboarding_description" = "在同一处追踪您的收入和支出。";
 "onboarding_language_hint" = "选择您的语言";
 "onboarding_continue" = "继续";
+"onboarding_initial_money_title" = "初始金额";
+"onboarding_initial_money_placeholder" = "0";
+"initial_money_date_note" = "%@ 添加于 %@";
 
 // Additional Chinese translations would continue here...

@@ -57,15 +57,11 @@ struct DepositView: View {
           Text("Display detailed")
         }).frame(width: 220)
         if displayDetail {
-          ForEach(getListOfCalculated(date: Date.startOfMonth(for: selectedMonth, of: selectedYear) ?? Date()).enumerated(), id: \.offset) { index, transaction in
+          let detailedTransactions = getListOfCalculated(date: Date.startOfMonth(for: selectedMonth, of: selectedYear) ?? Date())
+          if !detailedTransactions.isEmpty {
            
-              VStack(alignment: .leading) {
-                Text("\(index + 1). Amount: \(transaction.amount.formatted(.number.precision(.fractionLength(0)))) Category: \(transaction.category)")
-                if !transaction.descriptionText.isEmpty {
-                  Text("Description: \(transaction.descriptionText)")
-                }
-              }
-              .frame(maxWidth: .infinity)
+              TransactionDetailTableView(transactions: detailedTransactions)
+                .padding(.horizontal, 4)
           }
         } 
         Spacer()
