@@ -63,73 +63,31 @@ struct MainActionView: View {
     }
     .padding()
     .overlay(
-      // Custom popup overlay that dims entire screen
       Group {
-        if showAmountPopup {
-          ZStack {
-            // Full screen dark overlay
-            Color.black.opacity(0.4)
-              .ignoresSafeArea(.all)
-              .onTapGesture {
+        if showAmountPopup, let type = selectedType {
+          TransactionEntryPopupView(
+            title: type == .saving ? LocalizationKeys.addDeposit.localized : LocalizationKeys.addExpense.localized,
+            amountText: $amountText,
+            descriptionText: $descriptionText,
+            selectedCategory: $selectedCategory,
+            isIncome: type == .saving,
+            allowsCategorySelection: false,
+            onSave: {
+              if let amount = Double(amountText.replacingOccurrences(of: ",", with: "")), let category = selectedCategory {
+                modelContext.insert(viewModel.addTransaction(amount: amount, description: descriptionText, isIncome: type == .saving, category: category.name))
+                amountText = ""
+                descriptionText = ""
                 showAmountPopup = false
+                selectedType = nil
+                selectedCategory = nil
               }
-            
-            // Popup content
-            VStack(spacing: 20) {
-              HStack {
-                Text(selectedType == .saving ? LocalizationKeys.addDeposit.localized : LocalizationKeys.addExpense.localized)
-                  .font(.headline)
-                Spacer()
-                Button("✕") {
-                  showAmountPopup = false
-                }
-                .foregroundColor(.gray)
-              }
-              
-              if let category = selectedCategory {
-                Text(LocalizationKeys.categoryLabel.localized(arguments: category.localizedName))
-                  .font(.subheadline)
-                  .foregroundColor(.secondary)
-              }
-              
-              TextField(LocalizationKeys.amountPlaceholder.localized, text: $amountText)
-                .keyboardType(.decimalPad)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-              
-              TextField(LocalizationKeys.descriptionPlaceholder.localized, text: $descriptionText)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-              
-              HStack(spacing: 32) {
-                Button(LocalizationKeys.cancel.localized) {
-                  showAmountPopup = false
-                  amountText = ""
-                  descriptionText = ""
-                }
-                .foregroundColor(.red)
-                .frame(minWidth: 80)
-                
-                Button(LocalizationKeys.save.localized) {
-                  if let amount = Double(amountText), let category = selectedCategory {
-                    modelContext.insert( viewModel.addTransaction(amount: amount, description: descriptionText, isIncome: selectedType == .saving, category: category.name))
-                    amountText = ""
-                    descriptionText = ""
-                    showAmountPopup = false
-                    selectedType = nil
-                    selectedCategory = nil
-                  }
-                }
-                .disabled(Double(amountText) == nil)
-                .foregroundColor(Double(amountText) == nil ? .gray : .blue)
-                .frame(minWidth: 80)
-              }
+            },
+            onCancel: {
+              showAmountPopup = false
+              amountText = ""
+              descriptionText = ""
             }
-            .padding(24)
-            .background(Color(.systemBackground))
-            .cornerRadius(16)
-            .shadow(radius: 20)
-            .frame(maxWidth: 320)
-            .padding(.horizontal, 20)
-          }
+          )
         }
       }
     )

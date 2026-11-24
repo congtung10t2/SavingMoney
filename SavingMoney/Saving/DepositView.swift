@@ -15,6 +15,11 @@ struct DepositView: View {
   @State var allTime: Bool = false
   @State var displayDetail: Bool = false
   @EnvironmentObject var transactionViewModel: TransactionViewModel
+  @Environment(\.modelContext) private var modelContext
+  @State private var editingTransaction: Transaction?
+  @State private var editingAmount = ""
+  @State private var editingDescription = ""
+  @State private var editingCategory: TransactionCategory?
   @Query var transactions: [Transaction]
   var body: some View {
     ScrollView {
@@ -59,14 +64,57 @@ struct DepositView: View {
         if displayDetail {
           let detailedTransactions = getListOfCalculated(date: Date.startOfMonth(for: selectedMonth, of: selectedYear) ?? Date())
           if !detailedTransactions.isEmpty {
-           
-              TransactionDetailTableView(transactions: detailedTransactions)
-                .padding(.horizontal, 4)
+            TransactionDetailTableView(transactions: detailedTransactions) { transaction in
+              beginEditing(transaction)
+            }
+              .padding(.horizontal, 4)
           }
         } 
         Spacer()
       }
     }.frame(maxHeight: .infinity)
+    .overlay {
+      if let editingTransaction {
+        TransactionEntryPopupView(
+          title: LocalizationKeys.addDeposit.localized,
+          amountText: $editingAmount,
+          descriptionText: $editingDescription,
+          selectedCategory: $editingCategory,
+          isIncome: editingTransaction.isIncome,
+          allowsCategorySelection: true,
+          onSave: { commitEdit(for: editingTransaction) },
+          onCancel: { clearEditingState() }
+        )
+      }
+    }
+  }
+
+  private func beginEditing(_ transaction: Transaction) {
+    editingTransaction = transaction
+    editingAmount = transaction.amount.formatted(.number.precision(.fractionLength(0)).grouping(.never))
+    editingDescription = transaction.descriptionText
+    editingCategory = CategoryModel.shared.getCategory(name: transaction.category, isIncome: transaction.isIncome)
+  }
+
+  private func commitEdit(for transaction: Transaction) {
+    let normalized = editingAmount.replacingOccurrences(of: ",", with: "")
+    guard let newAmount = Double(normalized), newAmount >= 0, let category = editingCategory else { return }
+    let delta = newAmount - transaction.amount
+    if delta != 0 {
+      transactionViewModel.balance += delta
+    }
+    transaction.amount = newAmount
+    transaction.descriptionText = editingDescription
+    transaction.category = category.name
+    try? modelContext.save()
+    clearEditingState()
+  }
+
+  private func clearEditingState() {
+    editingTransaction = nil
+    editingAmount = ""
+    editingDescription = ""
+    editingCategory = nil
   }
   
   private func getListOfCalculated(date: Date?) -> [Transaction] {

@@ -6,17 +6,18 @@
 //
 
 import SwiftUI
+import SwiftData
 
 /// Table-like view that shows the detailed transaction list.
 /// Amounts are displayed as whole numbers (no decimal places).
 /// The table scrolls horizontally when it is wider than the screen.
 struct TransactionDetailTableView: View {
     let transactions: [Transaction]
+    let onEdit: (Transaction) -> Void
 
     var body: some View {
         ScrollView(.horizontal, showsIndicators: true) {
             VStack(alignment: .leading, spacing: 0) {
-                // Header row
                 HStack(spacing: 14) {
                     Text(LocalizationKeys.detailNumber.localized)
                         .font(.caption.weight(.semibold))
@@ -41,8 +42,7 @@ struct TransactionDetailTableView: View {
                 Divider()
                     .padding(.vertical, 4)
 
-                // Data rows
-                ForEach(transactions.enumerated(), id: \.offset) { index, transaction in
+                ForEach(Array(transactions.enumerated()), id: \.element.id) { index, transaction in
                     HStack(spacing: 14) {
                         Text("\(index + 1)")
                             .font(.body)
@@ -52,18 +52,24 @@ struct TransactionDetailTableView: View {
                             .font(.body)
                             .lineLimit(1)
                             .frame(width: 120, alignment: .trailing)
+                            .contentShape(Rectangle())
+                            .onTapGesture(count: 2) { onEdit(transaction) }
 
                         Text(transaction.category)
                             .font(.body)
                             .lineLimit(1)
                             .frame(width: 150, alignment: .leading)
+                            .contentShape(Rectangle())
+                            .onTapGesture(count: 2) { onEdit(transaction) }
 
                         Text(transaction.descriptionText)
                             .font(.body)
                             .lineLimit(1)
+                            .contentShape(Rectangle())
+                            .onTapGesture(count: 2) { onEdit(transaction) }
                     }
                     .padding(.horizontal, 12)
-                    .padding(.vertical, 14)  // more space between cells
+                    .padding(.vertical, 14)
                     .background(index % 2 == 0 ? Color(.systemGray5) : Color.clear)
                 }
             }
@@ -83,6 +89,6 @@ struct TransactionDetailTableView_Previews: PreviewProvider {
         TransactionDetailTableView(transactions: [
             Transaction(id: UUID(), amount: 50, date: Date(), descriptionText: "Groceries with a fairly long description that should be scrollable horizontally", isIncome: false, category: "Food"),
             Transaction(id: UUID(), amount: 30, date: Date(), descriptionText: "", isIncome: true, category: "Salary")
-        ])
+        ], onEdit: { _ in })
     }
 }
