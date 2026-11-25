@@ -55,6 +55,7 @@
 "description_placeholder" = "Mô tả (tùy chọn)";
 "cancel" = "Hủy";
 "save" = "Lưu";
+"delete" = "Xóa";
 
 // MARK: - Overview Views
 "spending_overview" = "Tổng quan chi tiêu";

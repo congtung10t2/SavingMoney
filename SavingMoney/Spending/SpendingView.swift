@@ -85,7 +85,8 @@ struct SpendingView: View {
           isIncome: editingTransaction.isIncome,
           allowsCategorySelection: true,
           onSave: { commitEdit(for: editingTransaction) },
-          onCancel: { clearEditingState() }
+          onCancel: { clearEditingState() },
+          onDelete: { deleteTransaction(for: editingTransaction) }
         )
       }
     }
@@ -108,6 +109,17 @@ struct SpendingView: View {
     transaction.amount = newAmount
     transaction.descriptionText = editingDescription
     transaction.category = category.name
+    try? modelContext.save()
+    clearEditingState()
+  }
+
+  private func deleteTransaction(for transaction: Transaction) {
+    if transaction.isIncome {
+      transactionViewModel.balance -= transaction.amount
+    } else {
+      transactionViewModel.balance += transaction.amount
+    }
+    modelContext.delete(transaction)
     try? modelContext.save()
     clearEditingState()
   }

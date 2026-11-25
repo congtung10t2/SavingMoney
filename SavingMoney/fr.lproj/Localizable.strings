@@ -30,6 +30,7 @@
 "description_placeholder" = "Description (optionnel)";
 "cancel" = "Annuler";
 "save" = "Enregistrer";
+"delete" = "Supprimer";
 
 // MARK: - Overview Views
 "spending_overview" = "Aperçu des dépenses";

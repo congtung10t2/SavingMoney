@@ -55,6 +55,7 @@
 "description_placeholder" = "Description (optional)";
 "cancel" = "Cancel";
 "save" = "Save";
+"delete" = "Delete";
 
 // MARK: - Overview Views
 "spending_overview" = "Spending Overview";

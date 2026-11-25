@@ -9,6 +9,7 @@ struct TransactionEntryPopupView: View {
     let allowsCategorySelection: Bool
     let onSave: () -> Void
     let onCancel: () -> Void
+    var onDelete: (() -> Void)? = nil
 
     var body: some View {
         ZStack {
@@ -72,6 +73,15 @@ struct TransactionEntryPopupView: View {
                         .disabled(Double(amountText.replacingOccurrences(of: ",", with: "")) == nil || selectedCategory == nil)
                         .foregroundColor((Double(amountText.replacingOccurrences(of: ",", with: "")) == nil || selectedCategory == nil) ? .gray : .blue)
                         .frame(minWidth: 80)
+                    }
+
+                    if let onDelete {
+                        Button(LocalizationKeys.delete.localized) {
+                            onDelete()
+                        }
+                        .foregroundColor(.red)
+                        .frame(maxWidth: .infinity)
+                        .padding(.top, 4)
                     }
                 }
                 .padding(24)

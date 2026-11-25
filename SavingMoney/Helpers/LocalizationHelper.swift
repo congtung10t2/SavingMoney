@@ -74,6 +74,7 @@ struct LocalizationKeys {
     static let descriptionPlaceholder = "description_placeholder"
     static let cancel = "cancel"
     static let save = "save"
+    static let delete = "delete"
     
     // MARK: - Overview Views
     static let spendingOverview = "spending_overview"
