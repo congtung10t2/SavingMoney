@@ -49,6 +49,12 @@
 "category_healthcare" = "医疗";
 "category_education" = "教育";
 "category_other" = "其他";
+"manage_categories" = "管理类别";
+"add_category" = "添加类别";
+"category_name_placeholder" = "类别名称";
+"categories" = "类别";
+"remove_category" = "删除%@";
+"category_already_exists" = "已存在名为“%@”的类别。";
 "category_salary" = "薪水";
 "category_freelance" = "自由职业";
 "category_investment" = "投资";

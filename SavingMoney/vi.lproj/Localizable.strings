@@ -76,6 +76,12 @@
 "category_healthcare" = "Y tế";
 "category_education" = "Giáo dục";
 "category_other" = "Khác";
+"manage_categories" = "Quản lý danh mục";
+"add_category" = "Thêm danh mục";
+"category_name_placeholder" = "Tên danh mục";
+"categories" = "Danh mục";
+"remove_category" = "Xóa %@";
+"category_already_exists" = "Danh mục có tên \"%@\" đã tồn tại.";
 "category_salary" = "Lương";
 "category_freelance" = "Freelance";
 "category_investment" = "Đầu tư";

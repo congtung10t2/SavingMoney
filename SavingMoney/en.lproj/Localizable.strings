@@ -76,6 +76,12 @@
 "category_healthcare" = "Healthcare";
 "category_education" = "Education";
 "category_other" = "Other";
+"manage_categories" = "Manage Categories";
+"add_category" = "Add Category";
+"category_name_placeholder" = "Category Name";
+"categories" = "Categories";
+"remove_category" = "Remove %@";
+"category_already_exists" = "A category named \"%@\" already exists.";
 "category_salary" = "Salary";
 "category_freelance" = "Freelance";
 "category_investment" = "Investment";

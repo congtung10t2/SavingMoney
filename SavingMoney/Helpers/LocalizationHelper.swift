@@ -99,6 +99,12 @@ struct LocalizationKeys {
     static let categoryFreelance = "category_freelance"
     static let categoryInvestment = "category_investment"
     static let categoryGift = "category_gift"
+    static let manageCategories = "manage_categories"
+    static let addCategory = "add_category"
+    static let categoryNamePlaceholder = "category_name_placeholder"
+    static let categories = "categories"
+    static let removeCategory = "remove_category"
+    static let categoryAlreadyExists = "category_already_exists"
     
     // MARK: - AI Advice
     static let aiFinancialAdvisor = "ai_financial_advisor"

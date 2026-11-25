@@ -172,20 +172,45 @@ struct CategoryGridView: View {
   let isIncome: Bool
   @Binding var selectedCategory: TransactionCategory?
   let onCategorySelected: (TransactionCategory) -> Void
-  
+  @ObservedObject private var categoryModel = CategoryModel.shared
+  @State private var showingManager = false
+
   var categories: [TransactionCategory] {
-    isIncome ? CategoryModel.shared.getLocalizedIncomeCategories() : CategoryModel.shared.getLocalizedExpenseCategories()
+    isIncome ? categoryModel.getLocalizedIncomeCategories() : categoryModel.getLocalizedExpenseCategories()
   }
   
   let columns = [GridItem(.adaptive(minimum: 80))]
   
   var body: some View {
     LazyVGrid(columns: columns, spacing: 20) {
-      ForEach(categories, id: \.name) { category in
+      ForEach(categories) { category in
         CategoryItemView(category: category, selected: selectedCategory?.name == category.name) {
           onCategorySelected(category)
         }
       }
+
+      Button {
+        showingManager = true
+      } label: {
+        VStack(spacing: 6) {
+          Image(systemName: "plus")
+            .font(.title)
+            .foregroundColor(.gray)
+          Text(LocalizationKeys.manageCategories.localized)
+            .font(.caption)
+            .foregroundColor(.secondary)
+            .lineLimit(2)
+            .multilineTextAlignment(.center)
+        }
+        .frame(width: 80, height: 80)
+        .background(Color(.systemGray6))
+        .cornerRadius(12)
+      }
+      .buttonStyle(.plain)
+      .accessibilityIdentifier("ManageCategoriesButton")
+    }
+    .sheet(isPresented: $showingManager) {
+      CategoryManagerView(isIncome: isIncome, selectedCategory: $selectedCategory)
     }
   }
 }
@@ -212,6 +237,91 @@ struct CategoryItemView: View {
       .frame(width: 80, height: 80)
       .background(selected ? Color(.systemGray4) : Color(.systemGray6))
       .cornerRadius(12)
+    }
+  }
+}
+
+struct CategoryManagerView: View {
+  let isIncome: Bool
+  @Binding var selectedCategory: TransactionCategory?
+  @ObservedObject private var categoryModel = CategoryModel.shared
+  @Environment(\.dismiss) private var dismiss
+  @State private var newCategoryName = ""
+  @State private var errorMessage: String?
+
+  private var categories: [TransactionCategory] {
+    isIncome ? categoryModel.getLocalizedIncomeCategories() : categoryModel.getLocalizedExpenseCategories()
+  }
+
+  var body: some View {
+    NavigationStack {
+      Form {
+        Section(LocalizationKeys.addCategory.localized) {
+          TextField(LocalizationKeys.categoryNamePlaceholder.localized, text: $newCategoryName)
+            .textInputAutocapitalization(.words)
+          Button {
+            addCategory()
+          } label: {
+            Label(LocalizationKeys.addCategory.localized, systemImage: "plus.circle.fill")
+          }
+          .disabled(newCategoryName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+          if let message = errorMessage {
+            Text(message)
+              .font(.caption)
+              .foregroundColor(.red)
+          }
+        }
+
+        Section(LocalizationKeys.categories.localized) {
+          ForEach(categories) { category in
+            HStack {
+              Image(systemName: category.icon)
+                .foregroundColor(.gray)
+                .frame(width: 24)
+              Text(category.localizedName)
+              Spacer()
+              Button {
+                removeCategory(category)
+              } label: {
+                Image(systemName: "minus.circle.fill")
+                  .foregroundColor(.red)
+              }
+              .buttonStyle(.borderless)
+              .accessibilityLabel(LocalizationKeys.removeCategory.localized(arguments: category.localizedName))
+            }
+          }
+        }
+      }
+      .navigationTitle(LocalizationKeys.manageCategories.localized)
+      .navigationBarTitleDisplayMode(.inline)
+      .toolbar {
+        ToolbarItem(placement: .confirmationAction) {
+          Button(LocalizationKeys.done.localized) {
+            dismiss()
+          }
+        }
+      }
+    }
+  }
+
+  private func addCategory() {
+    let name = newCategoryName.trimmingCharacters(in: .whitespacesAndNewlines)
+    guard !name.isEmpty else { return }
+    if categoryModel.addCategory(name: name, isIncome: isIncome) != nil {
+      newCategoryName = ""
+      errorMessage = nil
+    } else {
+      errorMessage = LocalizationKeys.categoryAlreadyExists.localized(arguments: name)
+    }
+  }
+
+  private func removeCategory(_ category: TransactionCategory) {
+    categoryModel.removeCategory(named: category.name, isIncome: isIncome)
+    if selectedCategory?.name == category.name {
+      selectedCategory = nil
+    }
+    if errorMessage != nil {
+      errorMessage = nil
     }
   }
 }
