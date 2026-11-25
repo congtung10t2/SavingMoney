@@ -12,67 +12,73 @@ struct TransactionEntryPopupView: View {
 
     var body: some View {
         ZStack {
-            Color.black.opacity(0.4)
+            Color.gray.opacity(0.65)
                 .ignoresSafeArea(.all)
                 .onTapGesture {
                     onCancel()
                 }
 
-            VStack(spacing: 20) {
-                HStack {
-                    Text(title)
-                        .font(.headline)
-                    Spacer()
-                    Button("✕") {
-                        onCancel()
-                    }
-                    .foregroundColor(.gray)
-                }
-
-                if allowsCategorySelection {
-                    Text(LocalizationKeys.selectCategory.localized)
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                    CategoryGridView(
-                        isIncome: isIncome,
-                        selectedCategory: $selectedCategory,
-                        onCategorySelected: { category in
-                            selectedCategory = category
+            ScrollView {
+                VStack(spacing: 20) {
+                    HStack {
+                        Text(title)
+                            .font(.headline)
+                        Spacer()
+                        Button("✕") {
+                            onCancel()
                         }
-                    )
-                    .frame(maxHeight: 180)
-                } else if let category = selectedCategory {
-                    Text(LocalizationKeys.categoryLabel.localized(arguments: category.localizedName))
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                }
-
-                TextField(LocalizationKeys.amountPlaceholder.localized, text: $amountText)
-                    .keyboardType(.decimalPad)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-
-                TextField(LocalizationKeys.descriptionPlaceholder.localized, text: $descriptionText)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-
-                HStack(spacing: 32) {
-                    Button(LocalizationKeys.cancel.localized) {
-                        onCancel()
+                        .foregroundColor(.gray)
                     }
-                    .foregroundColor(.red)
-                    .frame(minWidth: 80)
 
-                    Button(LocalizationKeys.save.localized) {
-                        onSave()
+                    if allowsCategorySelection {
+                        VStack(spacing: 12) {
+                            Text(LocalizationKeys.selectCategory.localized)
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                            CategoryGridView(
+                                isIncome: isIncome,
+                                selectedCategory: $selectedCategory,
+                                onCategorySelected: { category in
+                                    selectedCategory = category
+                                }
+                            )
+                        }
+                    } else if let category = selectedCategory {
+                        Text(LocalizationKeys.categoryLabel.localized(arguments: category.localizedName))
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
                     }
-                    .disabled(Double(amountText.replacingOccurrences(of: ",", with: "")) == nil || selectedCategory == nil)
-                    .foregroundColor((Double(amountText.replacingOccurrences(of: ",", with: "")) == nil || selectedCategory == nil) ? .gray : .blue)
-                    .frame(minWidth: 80)
+
+                    Divider()
+                        .padding(.vertical, 4)
+
+                    TextField(LocalizationKeys.amountPlaceholder.localized, text: $amountText)
+                        .keyboardType(.decimalPad)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+
+                    TextField(LocalizationKeys.descriptionPlaceholder.localized, text: $descriptionText)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+
+                    HStack(spacing: 32) {
+                        Button(LocalizationKeys.cancel.localized) {
+                            onCancel()
+                        }
+                        .foregroundColor(.red)
+                        .frame(minWidth: 80)
+
+                        Button(LocalizationKeys.save.localized) {
+                            onSave()
+                        }
+                        .disabled(Double(amountText.replacingOccurrences(of: ",", with: "")) == nil || selectedCategory == nil)
+                        .foregroundColor((Double(amountText.replacingOccurrences(of: ",", with: "")) == nil || selectedCategory == nil) ? .gray : .blue)
+                        .frame(minWidth: 80)
+                    }
                 }
+                .padding(24)
+                .background(Color(.systemBackground))
+                .cornerRadius(16)
+                .shadow(radius: 20)
             }
-            .padding(24)
-            .background(Color(.systemBackground))
-            .cornerRadius(16)
-            .shadow(radius: 20)
             .frame(maxWidth: 340)
             .padding(.horizontal, 20)
         }

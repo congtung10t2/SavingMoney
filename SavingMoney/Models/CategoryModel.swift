@@ -10,6 +10,25 @@ struct TransactionCategory: Codable, Equatable, Identifiable {
 
     var id: String { name }
 
+    /// Resolves the stored color name to a SwiftUI color used throughout the UI.
+    var swiftUIColor: Color {
+        switch color.lowercased() {
+        case "red": return .red
+        case "orange": return .orange
+        case "yellow": return .yellow
+        case "green": return .green
+        case "blue": return .blue
+        case "indigo": return .indigo
+        case "purple": return .purple
+        case "pink": return .pink
+        case "teal": return .teal
+        case "cyan": return .cyan
+        case "brown": return .brown
+        case "gray": return .gray
+        default: return .gray
+        }
+    }
+
     /// Returns a copy with the localized name refreshed for the current language.
     func localized() -> TransactionCategory {
         guard let key = localizationKey else { return self }
@@ -30,6 +49,7 @@ class CategoryModel: ObservableObject {
     private static let customIncomeKey = "custom_income_categories"
     private static let hiddenExpenseKey = "hidden_expense_categories"
     private static let hiddenIncomeKey = "hidden_income_categories"
+    private static let customColorPalette = ["red", "orange", "yellow", "green", "blue", "indigo", "purple", "pink", "teal", "cyan", "brown", "gray"]
 
     private let defaultExpenseCategories: [TransactionCategory] = [
         TransactionCategory(name: "Food", localizedName: LocalizationKeys.categoryFood.localized, icon: "fork.knife", color: "orange", localizationKey: LocalizationKeys.categoryFood),
@@ -39,9 +59,9 @@ class CategoryModel: ObservableObject {
         TransactionCategory(name: "Bills", localizedName: LocalizationKeys.categoryBills.localized, icon: "doc.text.fill", color: "gray", localizationKey: LocalizationKeys.categoryBills),
         TransactionCategory(name: "Healthcare", localizedName: LocalizationKeys.categoryHealthcare.localized, icon: "cross.fill", color: "green", localizationKey: LocalizationKeys.categoryHealthcare),
         TransactionCategory(name: "Education", localizedName: LocalizationKeys.categoryEducation.localized, icon: "book.fill", color: "indigo", localizationKey: LocalizationKeys.categoryEducation),
-        TransactionCategory(name: "Cafe", localizedName: LocalizationKeys.categoryCafe.localized, icon: "cup.and.heat.waves.fill", color: "red", localizationKey: LocalizationKeys.categoryCafe),
-        TransactionCategory(name: "Cash Widrawal", localizedName: LocalizationKeys.categoryCashWithdrawal.localized, icon: "creditcard.fill", color: "red", localizationKey: LocalizationKeys.categoryCashWithdrawal),
-        TransactionCategory(name: "Credit card", localizedName: LocalizationKeys.categoryCreditCard.localized, icon: "creditcard.arrow.trianglehead.2.clockwise.rotate.90", color: "red", localizationKey: LocalizationKeys.categoryCreditCard),
+        TransactionCategory(name: "Cafe", localizedName: LocalizationKeys.categoryCafe.localized, icon: "cup.and.heat.waves.fill", color: "pink", localizationKey: LocalizationKeys.categoryCafe),
+        TransactionCategory(name: "Cash Widrawal", localizedName: LocalizationKeys.categoryCashWithdrawal.localized, icon: "creditcard.fill", color: "cyan", localizationKey: LocalizationKeys.categoryCashWithdrawal),
+        TransactionCategory(name: "Credit card", localizedName: LocalizationKeys.categoryCreditCard.localized, icon: "creditcard.arrow.trianglehead.2.clockwise.rotate.90", color: "teal", localizationKey: LocalizationKeys.categoryCreditCard),
         TransactionCategory(name: "Other", localizedName: LocalizationKeys.categoryOther.localized, icon: "ellipsis.circle.fill", color: "brown", localizationKey: LocalizationKeys.categoryOther)
     ]
 
@@ -72,6 +92,8 @@ class CategoryModel: ObservableObject {
         customIncomeCategories = Self.load([TransactionCategory].self, forKey: Self.customIncomeKey) ?? []
         hiddenExpenseCategoryNames = Self.load(Set<String>.self, forKey: Self.hiddenExpenseKey) ?? []
         hiddenIncomeCategoryNames = Self.load(Set<String>.self, forKey: Self.hiddenIncomeKey) ?? []
+        hiddenExpenseCategoryNames.insert("Other")
+        hiddenIncomeCategoryNames.insert("Other")
     }
 
     func getCategory(name: String, isIncome: Bool) -> TransactionCategory? {
@@ -118,7 +140,9 @@ class CategoryModel: ObservableObject {
             return nil
         }
 
-        let category = TransactionCategory(name: trimmedName, localizedName: trimmedName, icon: "tag.fill", color: "blue")
+        let existingCustomCount = isIncome ? customIncomeCategories.count : customExpenseCategories.count
+        let color = Self.customColorPalette[existingCustomCount % Self.customColorPalette.count]
+        let category = TransactionCategory(name: trimmedName, localizedName: trimmedName, icon: "tag.fill", color: color)
         if isIncome {
             customIncomeCategories.append(category)
         } else {

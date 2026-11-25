@@ -67,6 +67,8 @@ struct LocalizationKeys {
     // MARK: - Transaction Form
     static let addExpense = "add_expense"
     static let addDeposit = "add_deposit"
+    static let editExpense = "edit_expense"
+    static let editDeposit = "edit_deposit"
     static let categoryLabel = "category_label"
     static let amountPlaceholder = "amount_placeholder"
     static let descriptionPlaceholder = "description_placeholder"

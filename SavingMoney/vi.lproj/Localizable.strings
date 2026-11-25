@@ -48,6 +48,8 @@
 // MARK: - Transaction Form
 "add_expense" = "Thêm chi phí";
 "add_deposit" = "Thêm tiền gửi";
+"edit_expense" = "Chỉnh sửa chi phí";
+"edit_deposit" = "Chỉnh sửa tiền gửi";
 "category_label" = "Danh mục: %@";
 "amount_placeholder" = "Số tiền";
 "description_placeholder" = "Mô tả (tùy chọn)";

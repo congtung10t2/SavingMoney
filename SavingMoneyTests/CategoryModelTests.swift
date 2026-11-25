@@ -113,7 +113,7 @@ struct CategoryModelValidationTests {
     @Test func testCategoryColorsAreValid() async throws {
         let categoryModel = CategoryModel.shared
         
-        let validColors = ["red", "blue", "green", "yellow", "orange", "purple", "pink", "gray", "brown", "indigo"]
+        let validColors = ["red", "blue", "green", "yellow", "orange", "purple", "pink", "gray", "brown", "indigo", "teal", "cyan"]
         
         // Test expense category colors
         for category in categoryModel.expenseCategories {

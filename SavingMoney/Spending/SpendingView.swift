@@ -78,7 +78,7 @@ struct SpendingView: View {
     .overlay {
       if let editingTransaction {
         TransactionEntryPopupView(
-          title: LocalizationKeys.addExpense.localized,
+          title: LocalizationKeys.editExpense.localized,
           amountText: $editingAmount,
           descriptionText: $editingDescription,
           selectedCategory: $editingCategory,
@@ -150,19 +150,11 @@ struct SpendingView: View {
       categoryTotals[expense.category, default: 0] += expense.amount
     }
     
-    let categoryColors: [String: Color] = [
-      "Food": .orange,
-      "Transport": .blue,
-      "Shopping": .purple,
-      "Bills": .gray,
-      "Entertainment": .green,
-      "Health": .red,
-      "Other": .yellow
-    ]
+
     
     return categoryTotals.map { category, amount in
       let percent = amount / totalExpenses
-      let color = categoryColors[category] ?? .gray
+      let color = CategoryModel.shared.getCategory(name: category, isIncome: false)?.swiftUIColor ?? .gray
       return (category: category, percent: percent, color: color)
     }.sorted { $0.percent > $1.percent }
   }

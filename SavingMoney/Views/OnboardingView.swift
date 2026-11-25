@@ -12,65 +12,68 @@ struct OnboardingView: View {
     @State private var showInitialMoneyPopup = false
 
     var body: some View {
-        VStack(alignment: .center, spacing: 16) {
-            Text(LocalizationKeys.onboardingTitle.localized)
-                .font(.largeTitle)
-                .fontWeight(.bold)
+        ScrollView {
+            VStack(alignment: .center, spacing: 16) {
+                Text(LocalizationKeys.onboardingTitle.localized)
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
 
-            Text(LocalizationKeys.onboardingDescription.localized)
-                .font(.body)
+                Text(LocalizationKeys.onboardingDescription.localized)
+                    .font(.body)
 
-            Text(LocalizationKeys.onboardingLanguageHint.localized)
-                .font(.headline)
+                Text(LocalizationKeys.onboardingLanguageHint.localized)
+                    .font(.headline)
+                    .padding(.top, 4)
+
+                // Language choices presented as selectable cards stacked vertically
+                VStack(spacing: 10) {
+                    ForEach(languageManager.supportedLanguages, id: \.self) { languageCode in
+                        LanguageCard(
+                            name: languageManager.supportedLanguageNames[languageCode] ?? languageCode,
+                            isSelected: languageCode == languageManager.currentLanguage,
+                            onTap: { languageManager.setLanguage(languageCode) }
+                        )
+                    }
+                }
+                .frame(maxWidth: .infinity)
                 .padding(.top, 4)
 
-            // Language choices presented as selectable cards stacked vertically
-            VStack(spacing: 10) {
-                ForEach(languageManager.supportedLanguages, id: \.self) { languageCode in
-                    LanguageCard(
-                        name: languageManager.supportedLanguageNames[languageCode] ?? languageCode,
-                        isSelected: languageCode == languageManager.currentLanguage,
-                        onTap: { languageManager.setLanguage(languageCode) }
-                    )
+                // Initial money entry — tap to open the entry popup, same as saving/spending entry
+                Button {
+                    showInitialMoneyPopup = true
+                } label: {
+                    HStack(spacing: 10) {
+                        Text(LocalizationKeys.onboardingInitialMoneyTitle.localized)
+                            .font(.headline)
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                    }
+                    .padding(.vertical, 10)
                 }
-            }
-            .frame(maxWidth: .infinity)
-            .padding(.top, 4)
+                .frame(maxWidth: 340)
+                .padding(.top, 8)
 
-            // Initial money entry — tap to open the entry popup, same as saving/spending entry
-            Button {
-                showInitialMoneyPopup = true
-            } label: {
-                HStack(spacing: 10) {
-                    Text(LocalizationKeys.onboardingInitialMoneyTitle.localized)
-                        .font(.headline)
-                    Spacer()
-                    Image(systemName: "chevron.right")
+                Spacer()
+
+                // Continue stays at the bottom, wider than a default button, centered horizontally
+                Button {
+                    languageManager.hasCompletedOnboarding = true
+                } label: {
+                    HStack {
+                        Text(LocalizationKeys.onboardingContinue.localized)
+                            .font(.headline)
+                            .fontWeight(.semibold)
+                    }.frame(maxWidth: .infinity)
                 }
-                .padding(.vertical, 10)
-            }
-            .frame(maxWidth: 340)
-            .padding(.top, 8)
+                .buttonStyle(.borderedProminent)
 
-            Spacer()
-
-            // Continue stays at the bottom, wider than a default button, centered horizontally
-            Button {
-                languageManager.hasCompletedOnboarding = true
-            } label: {
-              HStack {
-                Text(LocalizationKeys.onboardingContinue.localized)
-                  .font(.headline)
-                  .fontWeight(.semibold)
-              }.frame(maxWidth: .infinity)
+                .frame(maxWidth: .infinity)
+                .frame(height: 80)
+                .padding(.bottom, 8)
             }
-            .buttonStyle(.borderedProminent)
-           
+            .padding()
             .frame(maxWidth: .infinity)
-            .frame(height: 80)
-            .padding(.bottom, 8)
         }
-        .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .overlay(
             Group {

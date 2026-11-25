@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FoundationModels
 import _SwiftData_SwiftUI
 
 struct AIAdviceView: View {
@@ -16,46 +17,49 @@ struct AIAdviceView: View {
     
     var body: some View {
         NavigationView {
-            VStack(spacing: 20) {
-                Text("Financial Advisor")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .padding(.top)
-                
-                // Financial Summary Card
-                FinancialSummaryCard(viewModel: transactionViewModel)
-                
-                // Advice Section
-                VStack(alignment: .leading, spacing: 16) {
-                    HStack {
-                        Text("Personalized Advice")
-                            .font(.headline)
-                        Spacer()
-                        Button("Refresh") {
-                            generateAdvice()
+            ScrollView {
+                VStack(spacing: 20) {
+                    Text("Financial Advisor")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .padding(.top)
+
+                    // Financial Summary Card
+                    FinancialSummaryCard(viewModel: transactionViewModel)
+
+                    // Advice Section
+                    VStack(alignment: .leading, spacing: 16) {
+                        HStack {
+                            Text("Personalized Advice")
+                                .font(.headline)
+                            Spacer()
+                            Button("Refresh") {
+                                generateAdvice()
+                            }
+                            .foregroundColor(.blue)
                         }
-                        .foregroundColor(.blue)
-                    }
-                    
-                    if isLoading {
-                        ProgressView("Analyzing your finances...")
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                    } else if advice.isEmpty {
-                        EmptyAdviceView {
-                            generateAdvice()
-                        }
-                    } else {
-                        LazyVStack(spacing: 12) {
-                            ForEach(advice, id: \.id) { adviceItem in
-                                AdviceCard(advice: adviceItem)
+
+                        if isLoading {
+                            ProgressView("Analyzing your finances...")
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                        } else if advice.isEmpty {
+                            EmptyAdviceView {
+                                generateAdvice()
+                            }
+                        } else {
+                            LazyVStack(spacing: 12) {
+                                ForEach(advice, id: \.id) { adviceItem in
+                                    AdviceCard(advice: adviceItem)
+                                }
                             }
                         }
                     }
+                    .padding(.horizontal)
+
+                    Spacer()
                 }
-                .padding(.horizontal)
-                
-                Spacer()
+                .padding(.bottom)
             }
             .onAppear {
                 if advice.isEmpty {
@@ -66,11 +70,27 @@ struct AIAdviceView: View {
     }
     
     private func generateAdvice() {
+        guard !isLoading else { return }
         isLoading = true
         
-        // Simulate AI processing delay
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-          advice = AIAdviceEngine.generateAdvice(transactions: transactions, for: transactionViewModel)
+        Task { @MainActor in
+            let generated: [FinancialAdvice]
+            if transactions.isEmpty {
+                generated = AIAdviceEngine.generateAdvice(transactions: transactions, for: transactionViewModel)
+            } else if #available(iOS 26.0, *) {
+                do {
+                    generated = try await FoundationModelsAdvisor.generateAdvice(
+                        transactions: transactions,
+                        balance: transactionViewModel.balance
+                    )
+                } catch {
+                    generated = AIAdviceEngine.generateAdvice(transactions: transactions, for: transactionViewModel)
+                }
+            } else {
+                generated = AIAdviceEngine.generateAdvice(transactions: transactions, for: transactionViewModel)
+            }
+
+            advice = generated
             isLoading = false
         }
     }
@@ -305,6 +325,171 @@ struct AIAdviceEngine {
         }
         
         return advice
+    }
+}
+
+enum AIAdviceError: Error {
+    case modelUnavailable
+}
+
+@available(iOS 26.0, *)
+@Generable
+struct GeneratedFinancialAdviceSet {
+    @Guide(description: "Exactly three distinct pieces of financial advice.", .count(3))
+    var items: [GeneratedFinancialAdviceItem]
+}
+
+@available(iOS 26.0, *)
+@Generable
+struct GeneratedFinancialAdviceItem {
+    @Guide(description: "A short advice title of at most six words.")
+    var title: String
+    @Guide(description: "Specific, empathetic advice under 45 words that cites exact figures from the data.")
+    var detail: String
+    @Guide(description: "One concrete next action in a few words.")
+    var action: String
+    @Guide(description: "One of: blue, green, orange, red, purple.")
+    var colorName: String
+    @Guide(description: "One SF Symbol name from: chart.pie, arrow.up.circle, exclamationmark.triangle, star.circle, shield.checkered, chart.line.uptrend.xyaxis.")
+    var symbolName: String
+}
+
+@available(iOS 26.0, *)
+enum FoundationModelsAdvisor {
+    private static let allowedSymbols = [
+        "chart.pie", "arrow.up.circle", "exclamationmark.triangle",
+        "star.circle", "shield.checkered", "chart.line.uptrend.xyaxis"
+    ]
+
+    static func generateAdvice(transactions: [Transaction], balance: Double) async throws -> [FinancialAdvice] {
+        guard case .available = SystemLanguageModel.default.availability else {
+            throw AIAdviceError.modelUnavailable
+        }
+
+        let language = LanguageManager.shared.currentLanguage
+        let session = LanguageModelSession(instructions: instructions(for: language))
+        let response = try await session.respond(
+            to: prompt(for: transactions, balance: balance),
+            generating: GeneratedFinancialAdviceSet.self
+        )
+        return response.content.items.map { item in
+            FinancialAdvice(
+                title: item.title,
+                description: item.detail,
+                icon: allowedSymbols.contains(item.symbolName) ? item.symbolName : "lightbulb",
+                color: color(for: item.colorName),
+                actionText: item.action
+            )
+        }
+    }
+
+    private static func instructions(for language: String) -> String {
+        let locale: String
+        let languageName: String
+        switch language {
+        case "vi":
+            locale = "vi_VN"
+            languageName = "Vietnamese"
+        case "fr":
+            locale = "fr_FR"
+            languageName = "French"
+        case "zh-Hans":
+            locale = "zh_CN"
+            languageName = "Simplified Chinese"
+        default:
+            locale = "en_US"
+            languageName = "English"
+        }
+
+        return """
+        You are a careful personal-finance coach inside a budgeting app.
+        The person's locale is \(locale).
+        You MUST respond in \(languageName).
+        Use only the financial data in the prompt; never invent numbers, income, debts, or goals.
+        Do not claim to be a licensed advisor or promise returns.
+        Cite exact amounts or percentages from the data in every item and keep each item under 45 words.
+        Choose colorName only from: blue, green, orange, red, purple.
+        Choose symbolName only from: chart.pie, arrow.up.circle, exclamationmark.triangle, star.circle, shield.checkered, chart.line.uptrend.xyaxis.
+        """
+    }
+
+    private static func prompt(for transactions: [Transaction], balance: Double) -> String {
+        let sorted = transactions.sorted { $0.date < $1.date }
+        let totalIncome = transactions.filter { $0.isIncome }.reduce(0) { $0 + $1.amount }
+        let totalExpenses = transactions.filter { !$0.isIncome }.reduce(0) { $0 + $1.amount }
+        let savingsRate = totalIncome > 0 ? ((totalIncome - totalExpenses) / totalIncome) * 100 : 0
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+
+        var period = "No dated transactions"
+        if let first = sorted.first, let last = sorted.last {
+            let days = Calendar.current.dateComponents([.day], from: first.date, to: last.date).day ?? 0
+            period = "\(dateFormatter.string(from: first.date)) to \(dateFormatter.string(from: last.date)) (\(days + 1) days)"
+        }
+
+        let incomeByCategory = totals(by: \.category, in: transactions.filter { $0.isIncome })
+        let expenseByCategory = totals(by: \.category, in: transactions.filter { !$0.isIncome })
+
+        let incomeLines = incomeByCategory.prefix(6).map { name, amount in
+            "- \(name): \(money(amount)) (\(percent(totalIncome > 0 ? amount / totalIncome * 100 : 0)) of income)"
+        }
+        let expenseLines = expenseByCategory.prefix(8).map { name, amount in
+            "- \(name): \(money(amount)) (\(percent(totalExpenses > 0 ? amount / totalExpenses * 100 : 0)) of expenses)"
+        }
+        let recentLines = sorted.suffix(20).map { transaction in
+            let prefix = transaction.isIncome ? "+" : "-"
+            let note = transaction.descriptionText.isEmpty ? "" : " — \(transaction.descriptionText)"
+            return "- \(dateFormatter.string(from: transaction.date)): \(prefix)\(money(transaction.amount)) \(transaction.category)\(note)"
+        }
+
+        return """
+        Analyze the following personal finance data and give exactly three specific, realistic pieces of advice.
+        Period: \(period)
+        Current balance: \(money(balance))
+        Total income: \(money(totalIncome))
+        Total expenses: \(money(totalExpenses))
+        Savings rate: \(percent(savingsRate))
+        Transaction count: \(transactions.count)
+
+        Income by category:
+        \(incomeLines.isEmpty ? "- none" : incomeLines.joined(separator: "\n"))
+
+        Expenses by category:
+        \(expenseLines.isEmpty ? "- none" : expenseLines.joined(separator: "\n"))
+
+        Most recent transactions:
+        \(recentLines.isEmpty ? "- none" : recentLines.joined(separator: "\n"))
+
+        Prioritize the biggest measurable issues in this data and mention the exact figures that support each recommendation.
+        """
+    }
+
+    private static func totals(by keyPath: KeyPath<Transaction, String>, in transactions: [Transaction]) -> [(String, Double)] {
+        var totals: [String: Double] = [:]
+        for transaction in transactions {
+            totals[transaction[keyPath: keyPath], default: 0] += transaction.amount
+        }
+        return totals.sorted { $0.value > $1.value }
+    }
+
+    private static func money(_ value: Double) -> String {
+        value.formatted(.number.precision(.fractionLength(0...2)))
+    }
+
+    private static func percent(_ value: Double) -> String {
+        value.formatted(.number.precision(.fractionLength(0...1))) + "%"
+    }
+
+    private static func color(for name: String) -> Color {
+        switch name.lowercased() {
+        case "green": return .green
+        case "orange": return .orange
+        case "red": return .red
+        case "purple": return .purple
+        default: return .blue
+        }
     }
 }
 

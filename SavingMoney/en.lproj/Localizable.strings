@@ -48,6 +48,8 @@
 // MARK: - Transaction Form
 "add_expense" = "Add Expense";
 "add_deposit" = "Add Deposit";
+"edit_expense" = "Edit Expense";
+"edit_deposit" = "Edit Deposit";
 "category_label" = "Category: %@";
 "amount_placeholder" = "Amount";
 "description_placeholder" = "Description (optional)";

@@ -12,56 +12,59 @@ struct MainActionView: View {
   @Query var transactions: [Transaction]
   
   var body: some View {
-    VStack(spacing: 32) {
-      Text(LocalizationKeys.balanceLabel.localized(arguments: viewModel.balance.formatted(
-        .number
-          .grouping(.automatic)
-          .precision(.fractionLength(0)))))
-      .font(.title)
-      .bold()
-      .padding(.top, 16)
-      
-      if LanguageManager.shared.initialMoney > 0 {
-        Text(LanguageManager.formatInitialMoneyNote(
-          amount: LanguageManager.shared.initialMoney,
-          on: LanguageManager.shared.initialMoneyDate ?? Date()))
-          .font(.caption)
-          .foregroundColor(.secondary)
-          .padding(.top, 4)
-      }
-      
-      Text(LocalizationKeys.whatDoYouWant.localized)
-        .font(.title2)
+    ScrollView {
+      VStack(spacing: 32) {
+        Text(LocalizationKeys.balanceLabel.localized(arguments: viewModel.balance.formatted(
+          .number
+            .grouping(.automatic)
+            .precision(.fractionLength(0)))))
+        .font(.title)
         .bold()
-        .padding(.top, 8)
-      
-      HStack(spacing: 40) {
-        ActionButton(type: .spending, selected: selectedType == .spending) {
-          selectedType = .spending
-          selectedCategory = nil
+        .padding(.top, 16)
+        
+        if LanguageManager.shared.initialMoney > 0 {
+          Text(LanguageManager.formatInitialMoneyNote(
+            amount: LanguageManager.shared.initialMoney,
+            on: LanguageManager.shared.initialMoneyDate ?? Date()))
+            .font(.caption)
+            .foregroundColor(.secondary)
+            .padding(.top, 4)
         }
-        ActionButton(type: .saving, selected: selectedType == .saving) {
-          selectedType = .saving
-          selectedCategory = nil
-        }
-      }
-      
-      if let type = selectedType {
-        Text(LocalizationKeys.selectCategory.localized)
-          .font(.headline)
-        CategoryGridView(
-          isIncome: type == .saving, 
-          selectedCategory: $selectedCategory,
-          onCategorySelected: { category in
-            selectedCategory = category
-            showAmountPopup = true
+        
+        Text(LocalizationKeys.whatDoYouWant.localized)
+          .font(.title2)
+          .bold()
+          .padding(.top, 8)
+        
+        HStack(spacing: 40) {
+          ActionButton(type: .spending, selected: selectedType == .spending) {
+            selectedType = .spending
+            selectedCategory = nil
           }
-        )
+          ActionButton(type: .saving, selected: selectedType == .saving) {
+            selectedType = .saving
+            selectedCategory = nil
+          }
+        }
+        
+        if let type = selectedType {
+          Text(LocalizationKeys.selectCategory.localized)
+            .font(.headline)
+          CategoryGridView(
+            isIncome: type == .saving, 
+            selectedCategory: $selectedCategory,
+            onCategorySelected: { category in
+              selectedCategory = category
+              showAmountPopup = true
+            }
+          )
+        }
+        
+        Spacer()
       }
-      
-      Spacer()
+      .padding()
+      .frame(maxWidth: .infinity)
     }
-    .padding()
     .overlay(
       Group {
         if showAmountPopup, let type = selectedType {
@@ -227,7 +230,7 @@ struct CategoryItemView: View {
           .resizable()
           .aspectRatio(contentMode: .fit)
           .frame(width: 28, height: 28)
-          .foregroundColor(selected ? .blue : .gray)
+          .foregroundColor(category.swiftUIColor)
         Text(category.localizedName)
           .font(.caption)
           .lineLimit(2)
@@ -276,7 +279,7 @@ struct CategoryManagerView: View {
           ForEach(categories) { category in
             HStack {
               Image(systemName: category.icon)
-                .foregroundColor(.gray)
+                .foregroundColor(category.swiftUIColor)
                 .frame(width: 24)
               Text(category.localizedName)
               Spacer()

@@ -23,6 +23,8 @@
 // MARK: - Transaction Form
 "add_expense" = "Ajouter une dépense";
 "add_deposit" = "Ajouter un dépôt";
+"edit_expense" = "Modifier la dépense";
+"edit_deposit" = "Modifier le dépôt";
 "category_label" = "Catégorie: %@";
 "amount_placeholder" = "Montant";
 "description_placeholder" = "Description (optionnel)";

@@ -23,6 +23,8 @@
 // MARK: - Transaction Form
 "add_expense" = "添加支出";
 "add_deposit" = "添加存款";
+"edit_expense" = "编辑支出";
+"edit_deposit" = "编辑存款";
 "category_label" = "类别: %@";
 "amount_placeholder" = "金额";
 "description_placeholder" = "描述（可选）";

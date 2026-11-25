@@ -76,7 +76,7 @@ struct DepositView: View {
     .overlay {
       if let editingTransaction {
         TransactionEntryPopupView(
-          title: LocalizationKeys.addDeposit.localized,
+          title: LocalizationKeys.editDeposit.localized,
           amountText: $editingAmount,
           descriptionText: $editingDescription,
           selectedCategory: $editingCategory,
@@ -138,18 +138,11 @@ struct DepositView: View {
       categoryTotals[deposit.category, default: 0] += deposit.amount
     }
     
-    let categoryColors: [String: Color] = [
-      "Salary": .green,
-      "Freelance": .blue,
-      "Investment": .purple,
-      "Gift": .pink,
-      "Bonus": .orange,
-      "Other": .yellow
-    ]
+
     
     return categoryTotals.map { category, amount in
       let percent = amount / totalDeposits
-      let color = categoryColors[category] ?? .green
+      let color = CategoryModel.shared.getCategory(name: category, isIncome: true)?.swiftUIColor ?? .gray
       return (category: category, percent: percent, color: color)
     }.sorted { $0.percent > $1.percent }
   }
