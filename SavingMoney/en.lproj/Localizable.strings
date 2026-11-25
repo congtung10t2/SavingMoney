@@ -86,6 +86,9 @@
 "category_freelance" = "Freelance";
 "category_investment" = "Investment";
 "category_gift" = "Gift";
+"category_cafe" = "Cafe";
+"category_cash_withdrawal" = "Cash Withdrawal";
+"category_credit_card" = "Credit Card";
 
 // MARK: - AI Advice
 "ai_financial_advisor" = "Financial Advisor";

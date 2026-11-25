@@ -59,6 +59,9 @@
 "category_freelance" = "Freelance";
 "category_investment" = "Investissement";
 "category_gift" = "Cadeau";
+"category_cafe" = "Café";
+"category_cash_withdrawal" = "Retrait d'espèces";
+"category_credit_card" = "Carte de crédit";
 
 // MARK: - Transaction Detail Table
 "detail_number" = "N°";

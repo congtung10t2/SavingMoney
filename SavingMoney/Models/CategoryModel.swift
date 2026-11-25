@@ -39,9 +39,9 @@ class CategoryModel: ObservableObject {
         TransactionCategory(name: "Bills", localizedName: LocalizationKeys.categoryBills.localized, icon: "doc.text.fill", color: "gray", localizationKey: LocalizationKeys.categoryBills),
         TransactionCategory(name: "Healthcare", localizedName: LocalizationKeys.categoryHealthcare.localized, icon: "cross.fill", color: "green", localizationKey: LocalizationKeys.categoryHealthcare),
         TransactionCategory(name: "Education", localizedName: LocalizationKeys.categoryEducation.localized, icon: "book.fill", color: "indigo", localizationKey: LocalizationKeys.categoryEducation),
-        TransactionCategory(name: "Cafe", localizedName: LocalizationKeys.categoryEntertainment.localized, icon: "cup.and.heat.waves.fill", color: "red", localizationKey: LocalizationKeys.categoryEntertainment),
-        TransactionCategory(name: "Cash Widrawal", localizedName: LocalizationKeys.categoryEntertainment.localized, icon: "creditcard.fill", color: "red", localizationKey: LocalizationKeys.categoryEntertainment),
-        TransactionCategory(name: "Credit card", localizedName: LocalizationKeys.categoryEntertainment.localized, icon: "creditcard.arrow.trianglehead.2.clockwise.rotate.90", color: "red", localizationKey: LocalizationKeys.categoryEntertainment),
+        TransactionCategory(name: "Cafe", localizedName: LocalizationKeys.categoryCafe.localized, icon: "cup.and.heat.waves.fill", color: "red", localizationKey: LocalizationKeys.categoryCafe),
+        TransactionCategory(name: "Cash Widrawal", localizedName: LocalizationKeys.categoryCashWithdrawal.localized, icon: "creditcard.fill", color: "red", localizationKey: LocalizationKeys.categoryCashWithdrawal),
+        TransactionCategory(name: "Credit card", localizedName: LocalizationKeys.categoryCreditCard.localized, icon: "creditcard.arrow.trianglehead.2.clockwise.rotate.90", color: "red", localizationKey: LocalizationKeys.categoryCreditCard),
         TransactionCategory(name: "Other", localizedName: LocalizationKeys.categoryOther.localized, icon: "ellipsis.circle.fill", color: "brown", localizationKey: LocalizationKeys.categoryOther)
     ]
 

@@ -86,6 +86,9 @@
 "category_freelance" = "Freelance";
 "category_investment" = "Đầu tư";
 "category_gift" = "Quà tặng";
+"category_cafe" = "Cà phê";
+"category_cash_withdrawal" = "Rút tiền mặt";
+"category_credit_card" = "Thẻ tín dụng";
 
 // MARK: - AI Advice
 "ai_financial_advisor" = "Cố vấn tài chính AI";

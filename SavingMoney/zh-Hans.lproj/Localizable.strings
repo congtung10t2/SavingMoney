@@ -59,6 +59,9 @@
 "category_freelance" = "自由职业";
 "category_investment" = "投资";
 "category_gift" = "礼品";
+"category_cafe" = "咖啡";
+"category_cash_withdrawal" = "现金取款";
+"category_credit_card" = "信用卡";
 
 // MARK: - Transaction Detail Table
 "detail_number" = "序号";
