@@ -51,7 +51,7 @@ struct SpendingView: View {
             MonthYearPickerView(selectedMonth: $selectedMonth, selectedYear: $selectedYear)
           }
           Toggle(isOn: $allTime, label: {
-            Text("Display all time only")
+            Text(LocalizationKeys.displayAllTimeOnly.localized)
           }).frame(width: 220)
         }.frame(maxWidth: .infinity)
         SpendingOverviewCircleView(categoryPercents: calculateSpendingPercents(date: Date.startOfMonth(for: selectedMonth, of: selectedYear)))
@@ -61,7 +61,7 @@ struct SpendingView: View {
       VStack(alignment: .center) {
         
         Toggle(isOn: $displayDetail, label: {
-          Text("Display detailed")
+          Text(LocalizationKeys.displayDetailed.localized)
         }).frame(width: 220)
         if displayDetail {
           let detailedTransactions = getListOfCalculated(date: Date.startOfMonth(for: selectedMonth, of: selectedYear))

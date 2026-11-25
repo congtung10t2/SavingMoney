@@ -55,7 +55,7 @@ struct TransactionDetailTableView: View {
                             .contentShape(Rectangle())
                             .onTapGesture(count: 2) { onEdit(transaction) }
 
-                        Text(transaction.category)
+                        Text(CategoryModel.shared.getCategory(name: transaction.category, isIncome: transaction.isIncome)?.localizedName ?? transaction.category)
                             .font(.body)
                             .lineLimit(1)
                             .frame(width: 150, alignment: .leading)

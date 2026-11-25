@@ -65,6 +65,9 @@
 "total_spent_per_month" = "Tổng chi tiêu: %@ Đồng tháng này";
 "spending_breakdown" = "Phân tích chi tiêu";
 "deposit_breakdown" = "Phân tích tiền gửi";
+"display_all_time" = "Hiển thị tất cả thời gian";
+"display_all_time_only" = "Chỉ hiển thị tất cả thời gian";
+"display_detailed" = "Hiển thị chi tiết";
 "add_spending_message" = "Thêm giao dịch chi tiêu để xem phân tích";
 "add_deposit_message" = "Thêm giao dịch tiền gửi để xem phân tích";
 "no_deposits_yet" = "Chưa có tiền gửi";

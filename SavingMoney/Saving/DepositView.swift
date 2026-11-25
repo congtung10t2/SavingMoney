@@ -50,7 +50,7 @@ struct DepositView: View {
             MonthYearPickerView(selectedMonth: $selectedMonth, selectedYear: $selectedYear)  
           }
           Toggle(isOn: $allTime, label: {
-            Text("Display All Time")
+            Text(LocalizationKeys.displayAllTime.localized)
           }).frame(width: 220)
         }.frame(maxWidth: .infinity)
         
@@ -59,7 +59,7 @@ struct DepositView: View {
       DepositOverviewBarView(categoryPercents: calculateDepositPercents(date: Date.startOfMonth(for: selectedMonth, of: selectedYear) ?? Date()))
       VStack(alignment: .center) {
         Toggle(isOn: $displayDetail, label: {
-          Text("Display detailed")
+          Text(LocalizationKeys.displayDetailed.localized)
         }).frame(width: 220)
         if displayDetail {
           let detailedTransactions = getListOfCalculated(date: Date.startOfMonth(for: selectedMonth, of: selectedYear) ?? Date())

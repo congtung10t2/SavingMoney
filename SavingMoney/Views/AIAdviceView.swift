@@ -19,7 +19,7 @@ struct AIAdviceView: View {
         NavigationView {
             ScrollView {
                 VStack(spacing: 20) {
-                    Text("Financial Advisor")
+                    Text(LocalizationKeys.aiFinancialAdvisor.localized)
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .padding(.top)
@@ -30,17 +30,17 @@ struct AIAdviceView: View {
                     // Advice Section
                     VStack(alignment: .leading, spacing: 16) {
                         HStack {
-                            Text("Personalized Advice")
+                            Text(LocalizationKeys.personalizedAdvice.localized)
                                 .font(.headline)
                             Spacer()
-                            Button("Refresh") {
+                            Button(LocalizationKeys.refresh.localized) {
                                 generateAdvice()
                             }
                             .foregroundColor(.blue)
                         }
 
                         if isLoading {
-                            ProgressView("Analyzing your finances...")
+                            ProgressView(LocalizationKeys.analyzingFinances.localized)
                                 .frame(maxWidth: .infinity)
                                 .padding()
                         } else if advice.isEmpty {
@@ -114,12 +114,12 @@ struct FinancialSummaryCard: View {
     
     var body: some View {
         VStack(spacing: 12) {
-            Text("Financial Overview")
+            Text(LocalizationKeys.financialOverview.localized)
                 .font(.headline)
             
             HStack(spacing: 20) {
                 VStack {
-                    Text("Balance")
+                    Text(LocalizationKeys.balance.localized)
                         .font(.caption)
                         .foregroundColor(.secondary)
                   
@@ -130,7 +130,7 @@ struct FinancialSummaryCard: View {
                 }
                 
                 VStack {
-                    Text("Savings Rate")
+                    Text(LocalizationKeys.savingsRate.localized)
                         .font(.caption)
                         .foregroundColor(.secondary)
                     Text("\(String(format: "%.1f", savingsRate))%")
@@ -140,7 +140,7 @@ struct FinancialSummaryCard: View {
                 }
                 
                 VStack {
-                    Text("Transactions")
+                    Text(LocalizationKeys.transactions.localized)
                         .font(.caption)
                         .foregroundColor(.secondary)
                     Text("\(transactions.count)")
@@ -203,16 +203,16 @@ struct EmptyAdviceView: View {
                 .font(.system(size: 50))
                 .foregroundColor(.blue)
             
-            Text("Get Financial Advice")
+            Text(LocalizationKeys.getAIAdvice.localized)
                 .font(.title2)
                 .fontWeight(.semibold)
             
-            Text("Add some transactions to receive personalized financial recommendations")
+            Text(LocalizationKeys.addTransactionsAdvice.localized)
                 .font(.body)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
             
-            Button("Generate Advice") {
+            Button(LocalizationKeys.generateAdvice.localized) {
                 onGenerateAdvice()
             }
             .buttonStyle(.borderedProminent)
@@ -235,11 +235,11 @@ struct AIAdviceEngine {
         // No transactions advice
         if transactionCount == 0 {
             advice.append(FinancialAdvice(
-                title: "Start Tracking Your Finances",
-                description: "Begin by adding your income and expenses to get personalized advice.",
+                title: LocalizationKeys.startTrackingTitle.localized,
+                description: LocalizationKeys.startTrackingDesc.localized,
                 icon: "chart.line.uptrend.xyaxis",
                 color: .blue,
-                actionText: "Add your first transaction in the Add tab"
+                actionText: LocalizationKeys.startTrackingAction.localized
             ))
             return advice
         }
@@ -247,29 +247,29 @@ struct AIAdviceEngine {
         // Balance-based advice
         if balance < 0 {
             advice.append(FinancialAdvice(
-                title: "Negative Balance Alert",
-                description: "Your expenses exceed your income. Consider reviewing your spending habits and finding ways to reduce unnecessary expenses.",
+                title: LocalizationKeys.negativeBalanceTitle.localized,
+                description: LocalizationKeys.negativeBalanceDesc.localized,
                 icon: "exclamationmark.triangle",
                 color: .red,
-                actionText: "Review your spending categories for potential cuts"
+                actionText: LocalizationKeys.negativeBalanceAction.localized
             ))
         } else if balance > 0 && totalIncome > 0 {
             let savingsRate = (balance / totalIncome) * 100
             if savingsRate < 10 {
                 advice.append(FinancialAdvice(
-                    title: "Improve Your Savings Rate",
-                    description: "Your savings rate is \(String(format: "%.1f", savingsRate))%. Financial experts recommend saving at least 20% of your income.",
+                    title: LocalizationKeys.improveSavingsTitle.localized,
+                    description: LocalizationKeys.improveSavingsDesc.localized(arguments: savingsRate),
                     icon: "arrow.up.circle",
                     color: .orange,
-                    actionText: "Try to reduce spending or increase income"
+                    actionText: LocalizationKeys.improveSavingsAction.localized
                 ))
             } else if savingsRate >= 20 {
                 advice.append(FinancialAdvice(
-                    title: "Excellent Savings Rate!",
-                    description: "Your savings rate of \(String(format: "%.1f", savingsRate))% is excellent. Consider investing your surplus for long-term growth.",
+                    title: LocalizationKeys.excellentSavingsTitle.localized,
+                    description: LocalizationKeys.excellentSavingsDesc.localized(arguments: savingsRate),
                     icon: "star.circle",
                     color: .green,
-                    actionText: "Look into investment opportunities"
+                    actionText: LocalizationKeys.excellentSavingsAction.localized
                 ))
             }
         }
@@ -285,13 +285,14 @@ struct AIAdviceEngine {
             // Find highest spending category
             if let highestCategory = categoryTotals.max(by: { $0.value < $1.value }) {
                 let percentage = (highestCategory.value / totalExpenses) * 100
+                let categoryName = CategoryModel.shared.getCategory(name: highestCategory.key, isIncome: false)?.localizedName ?? highestCategory.key
                 if percentage > 40 {
                     advice.append(FinancialAdvice(
-                        title: "High Spending in \(highestCategory.key)",
-                        description: "\(String(format: "%.1f", percentage))% of your expenses go to \(highestCategory.key). Consider if this aligns with your financial goals.",
+                        title: LocalizationKeys.highSpendingTitle.localized(arguments: categoryName),
+                        description: LocalizationKeys.highSpendingDesc.localized(arguments: percentage, categoryName),
                         icon: "chart.pie",
                         color: .purple,
-                        actionText: "Review \(highestCategory.key) expenses for optimization"
+                        actionText: LocalizationKeys.highSpendingAction.localized(arguments: categoryName)
                     ))
                 }
             }
@@ -304,11 +305,11 @@ struct AIAdviceEngine {
             
             if balance < emergencyFundGoal {
                 advice.append(FinancialAdvice(
-                    title: "Build an Emergency Fund",
-                    description: "Aim to save 3-6 months of expenses (approximately $\(String(format: "%.0f", emergencyFundGoal))) for unexpected situations.",
+                    title: LocalizationKeys.emergencyFundTitle.localized,
+                    description: LocalizationKeys.emergencyFundDesc.localized(arguments: emergencyFundGoal),
                     icon: "shield.checkered",
                     color: .blue,
-                    actionText: "Set aside money each month for emergencies"
+                    actionText: LocalizationKeys.emergencyFundAction.localized
                 ))
             }
         }
@@ -316,11 +317,11 @@ struct AIAdviceEngine {
         // General tips if no specific issues
         if advice.isEmpty || advice.count < 2 {
             advice.append(FinancialAdvice(
-                title: "Track Your Progress",
-                description: "Continue monitoring your income and expenses to maintain healthy financial habits.",
+                title: LocalizationKeys.trackProgressTitle.localized,
+                description: LocalizationKeys.trackProgressDesc.localized,
                 icon: "chart.line.uptrend.xyaxis",
                 color: .green,
-                actionText: "Keep adding transactions regularly"
+                actionText: LocalizationKeys.trackProgressAction.localized
             ))
         }
         

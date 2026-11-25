@@ -65,6 +65,9 @@
 "total_deposits_per_month" = "Total Deposits: $%@ this month";
 "spending_breakdown" = "Spending Breakdown";
 "deposit_breakdown" = "Deposit Breakdown";
+"display_all_time" = "Display All Time";
+"display_all_time_only" = "Display all time only";
+"display_detailed" = "Display detailed";
 "add_spending_message" = "Add spending transactions to see your breakdown";
 "add_deposit_message" = "Add deposit transactions to see your breakdown";
 "no_deposits_yet" = "No deposits yet";

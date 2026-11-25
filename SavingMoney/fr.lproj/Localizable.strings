@@ -38,6 +38,9 @@
 "total_deposits" = "Total des dépôts: €%@";
 "spending_breakdown" = "Répartition des dépenses";
 "deposit_breakdown" = "Répartition des dépôts";
+"display_all_time" = "Afficher toute la période";
+"display_all_time_only" = "Afficher uniquement toute la période";
+"display_detailed" = "Afficher les détails";
 "add_spending_message" = "Ajoutez des transactions de dépenses pour voir votre répartition";
 "add_deposit_message" = "Ajoutez des transactions de dépôts pour voir votre répartition";
 "no_deposits_yet" = "Aucun dépôt pour le moment";
@@ -64,6 +67,50 @@
 "category_cafe" = "Café";
 "category_cash_withdrawal" = "Retrait d'espèces";
 "category_credit_card" = "Carte de crédit";
+
+// MARK: - AI Advice
+"ai_financial_advisor" = "Conseiller financier";
+"financial_overview" = "Aperçu financier";
+"personalized_advice" = "Conseils personnalisés";
+"refresh" = "Actualiser";
+"analyzing_finances" = "Analyse de vos finances...";
+"get_ai_advice" = "Obtenir des conseils financiers";
+"add_transactions_advice" = "Ajoutez des transactions pour recevoir des recommandations financières personnalisées";
+"generate_advice" = "Générer des conseils";
+
+// MARK: - Financial Summary
+"balance" = "Solde";
+"savings_rate" = "Taux d'épargne";
+"transactions" = "Transactions";
+
+// MARK: - AI Advice Messages
+"start_tracking_title" = "Commencez à suivre vos finances";
+"start_tracking_desc" = "Commencez par ajouter vos revenus et dépenses pour obtenir des conseils personnalisés.";
+"start_tracking_action" = "Ajoutez votre première transaction dans l'onglet Ajouter";
+
+"negative_balance_title" = "Alerte solde négatif";
+"negative_balance_desc" = "Vos dépenses dépassent vos revenus. Examinez vos habitudes de dépenses et trouvez des façons de réduire les dépenses inutiles.";
+"negative_balance_action" = "Examinez vos catégories de dépenses à réduire";
+
+"improve_savings_title" = "Améliorez votre taux d'épargne";
+"improve_savings_desc" = "Votre taux d'épargne est de %.1f %%. Les experts financiers recommandent d'épargner au moins 20 %% de vos revenus.";
+"improve_savings_action" = "Essayez de réduire les dépenses ou d'augmenter vos revenus";
+
+"excellent_savings_title" = "Excellent taux d'épargne !";
+"excellent_savings_desc" = "Votre taux d'épargne de %.1f %% est excellent. Envisagez d'investir votre excédent pour une croissance à long terme.";
+"excellent_savings_action" = "Renseignez-vous sur les possibilités d'investissement";
+
+"high_spending_title" = "Dépenses élevées en %@";
+"high_spending_desc" = "%.1f %% de vos dépenses vont à %@. Vérifiez si cela correspond à vos objectifs financiers.";
+"high_spending_action" = "Examinez les dépenses de %@ à optimiser";
+
+"emergency_fund_title" = "Constituez un fonds d'urgence";
+"emergency_fund_desc" = "Visez à épargner 3 à 6 mois de dépenses (environ %.0f €) pour les situations imprévues.";
+"emergency_fund_action" = "Mettez de l'argent de côté chaque mois pour les urgences";
+
+"track_progress_title" = "Suivez vos progrès";
+"track_progress_desc" = "Continuez à surveiller vos revenus et dépenses pour maintenir de saines habitudes financières.";
+"track_progress_action" = "Continuez à ajouter des transactions régulièrement";
 
 // MARK: - Transaction Detail Table
 "detail_number" = "N°";

@@ -38,6 +38,9 @@
 "total_deposits" = "总存款: ¥%@";
 "spending_breakdown" = "支出分析";
 "deposit_breakdown" = "存款分析";
+"display_all_time" = "显示全部时间";
+"display_all_time_only" = "仅显示全部时间";
+"display_detailed" = "显示详情";
 "add_spending_message" = "添加支出交易以查看分析";
 "add_deposit_message" = "添加存款交易以查看分析";
 "no_deposits_yet" = "暂无存款";
@@ -64,6 +67,50 @@
 "category_cafe" = "咖啡";
 "category_cash_withdrawal" = "现金取款";
 "category_credit_card" = "信用卡";
+
+// MARK: - AI Advice
+"ai_financial_advisor" = "财务顾问";
+"financial_overview" = "财务概览";
+"personalized_advice" = "个性化建议";
+"refresh" = "刷新";
+"analyzing_finances" = "正在分析您的财务...";
+"get_ai_advice" = "获取财务建议";
+"add_transactions_advice" = "添加一些交易以获取个性化财务建议";
+"generate_advice" = "生成建议";
+
+// MARK: - Financial Summary
+"balance" = "余额";
+"savings_rate" = "储蓄率";
+"transactions" = "交易";
+
+// MARK: - AI Advice Messages
+"start_tracking_title" = "开始记录您的财务";
+"start_tracking_desc" = "先添加收入和支出，以获得个性化建议。";
+"start_tracking_action" = "在“添加”标签中添加第一笔交易";
+
+"negative_balance_title" = "余额不足提醒";
+"negative_balance_desc" = "您的支出超过收入。请检查消费习惯，寻找减少不必要支出的方法。";
+"negative_balance_action" = "检查可削减的消费类别";
+
+"improve_savings_title" = "提高储蓄率";
+"improve_savings_desc" = "您的储蓄率为 %.1f%%。财务专家建议至少存下收入的 20%%。";
+"improve_savings_action" = "尝试减少支出或增加收入";
+
+"excellent_savings_title" = "储蓄率非常出色！";
+"excellent_savings_desc" = "您 %.1f%% 的储蓄率非常出色。可考虑投资盈余以实现长期增长。";
+"excellent_savings_action" = "了解投资机会";
+
+"high_spending_title" = "%@ 支出过高";
+"high_spending_desc" = "您 %.1f%% 的支出用于 %@。请确认这是否符合您的财务目标。";
+"high_spending_action" = "检查 %@ 支出以进行优化";
+
+"emergency_fund_title" = "建立应急基金";
+"emergency_fund_desc" = "建议存下 3-6 个月的支出（约 %.0f 元），以应对突发情况。";
+"emergency_fund_action" = "每月留出一部分钱作为应急资金";
+
+"track_progress_title" = "持续跟踪进度";
+"track_progress_desc" = "继续记录收入和支出，保持良好的财务习惯。";
+"track_progress_action" = "坚持定期添加交易";
 
 // MARK: - Transaction Detail Table
 "detail_number" = "序号";
